@@ -11,6 +11,9 @@ use Cake\Validation\Validator;
 /**
  * Ocorrencia Model
  *
+ * @property \App\Model\Table\UsuariocomumTable&\Cake\ORM\Association\BelongsTo $Usuariocomum
+ * @property \App\Model\Table\EnderecosTable&\Cake\ORM\Association\BelongsTo $Enderecos
+ *
  * @method \App\Model\Entity\Ocorrencium newEmptyEntity()
  * @method \App\Model\Entity\Ocorrencium newEntity(array $data, array $options = [])
  * @method \App\Model\Entity\Ocorrencium[] newEntities(array $data, array $options = [])
@@ -40,6 +43,15 @@ class OcorrenciaTable extends Table
         $this->setTable('ocorrencia');
         $this->setDisplayField('id_ocorrencia');
         $this->setPrimaryKey('id_ocorrencia');
+
+        $this->belongsTo('Usuariocomum', [
+            'foreignKey' => 'usuariocomum_id',
+            'joinType' => 'INNER',
+        ]);
+        $this->belongsTo('Endereco', [
+            'foreignKey' => 'endereco_id',
+            'joinType' => 'INNER',
+        ]);
     }
 
     /**
@@ -56,6 +68,7 @@ class OcorrenciaTable extends Table
 
         $validator
             ->scalar('descricao')
+            ->maxLength('descricao', 300)
             ->requirePresence('descricao', 'create')
             ->notEmptyString('descricao');
 
@@ -68,14 +81,21 @@ class OcorrenciaTable extends Table
             ->dateTime('data_Criacao')
             ->allowEmptyDateTime('data_Criacao');
 
-        $validator
-            ->integer('id_usuarioComum')
-            ->allowEmptyString('id_usuarioComum');
-
-        $validator
-            ->integer('id_enderecoOcorrencia')
-            ->allowEmptyString('id_enderecoOcorrencia');
-
         return $validator;
+    }
+
+    /**
+     * Returns a rules checker object that will be used for validating
+     * application integrity.
+     *
+     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
+     * @return \Cake\ORM\RulesChecker
+     */
+    public function buildRules(RulesChecker $rules): RulesChecker
+    {
+        $rules->add($rules->existsIn('usuariocomum_id', 'Usuariocomum'), ['errorField' => 'usuariocomum_id']);
+        $rules->add($rules->existsIn('endereco_id', 'Enderecos'), ['errorField' => 'endereco_id']);
+
+        return $rules;
     }
 }

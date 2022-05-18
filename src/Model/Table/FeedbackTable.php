@@ -11,6 +11,11 @@ use Cake\Validation\Validator;
 /**
  * Feedback Model
  *
+ * @property \App\Model\Table\OcorrenciasTable&\Cake\ORM\Association\BelongsTo $Ocorrencias
+ * @property \App\Model\Table\UsuariocomumsTable&\Cake\ORM\Association\BelongsTo $Usuariocomums
+ * @property \App\Model\Table\InstituicaosTable&\Cake\ORM\Association\BelongsTo $Instituicaos
+ * @property \App\Model\Table\ClassificacaoTable&\Cake\ORM\Association\HasMany $Classificacao
+ *
  * @method \App\Model\Entity\Feedback newEmptyEntity()
  * @method \App\Model\Entity\Feedback newEntity(array $data, array $options = [])
  * @method \App\Model\Entity\Feedback[] newEntities(array $data, array $options = [])
@@ -40,6 +45,22 @@ class FeedbackTable extends Table
         $this->setTable('feedback');
         $this->setDisplayField('id_feedback');
         $this->setPrimaryKey('id_feedback');
+
+        $this->belongsTo('Ocorrencias', [
+            'foreignKey' => 'ocorrencia_id',
+            'joinType' => 'INNER',
+        ]);
+        $this->belongsTo('Usuariocomums', [
+            'foreignKey' => 'usuariocomum_id',
+            'joinType' => 'INNER',
+        ]);
+        $this->belongsTo('Instituicaos', [
+            'foreignKey' => 'instituicao_id',
+            'joinType' => 'INNER',
+        ]);
+        $this->hasMany('Classificacao', [
+            'foreignKey' => 'feedback_id',
+        ]);
     }
 
     /**
@@ -56,26 +77,9 @@ class FeedbackTable extends Table
 
         $validator
             ->scalar('devolutiva')
+            ->maxLength('devolutiva', 300)
             ->requirePresence('devolutiva', 'create')
             ->notEmptyString('devolutiva');
-
-        $validator
-            ->integer('id_ocorrencia')
-            ->requirePresence('id_ocorrencia', 'create')
-            ->notEmptyString('id_ocorrencia')
-            ->add('id_ocorrencia', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
-
-        $validator
-            ->integer('id_usuarioComum')
-            ->requirePresence('id_usuarioComum', 'create')
-            ->notEmptyString('id_usuarioComum')
-            ->add('id_usuarioComum', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
-
-        $validator
-            ->integer('id_instituicao')
-            ->requirePresence('id_instituicao', 'create')
-            ->notEmptyString('id_instituicao')
-            ->add('id_instituicao', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
 
         return $validator;
     }
@@ -89,9 +93,9 @@ class FeedbackTable extends Table
      */
     public function buildRules(RulesChecker $rules): RulesChecker
     {
-        $rules->add($rules->isUnique(['id_ocorrencia']), ['errorField' => 'id_ocorrencia']);
-        $rules->add($rules->isUnique(['id_instituicao']), ['errorField' => 'id_instituicao']);
-        $rules->add($rules->isUnique(['id_usuarioComum']), ['errorField' => 'id_usuarioComum']);
+        $rules->add($rules->existsIn('ocorrencia_id', 'Ocorrencias'), ['errorField' => 'ocorrencia_id']);
+        $rules->add($rules->existsIn('usuariocomum_id', 'Usuariocomums'), ['errorField' => 'usuariocomum_id']);
+        $rules->add($rules->existsIn('instituicao_id', 'Instituicaos'), ['errorField' => 'instituicao_id']);
 
         return $rules;
     }

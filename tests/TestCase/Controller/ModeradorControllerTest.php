@@ -23,6 +23,7 @@ class ModeradorControllerTest extends TestCase
      */
     protected $fixtures = [
         'app.Moderador',
+        'app.Roles',
     ];
 
     /**

@@ -9,23 +9,27 @@ use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * Usuariocomum Model
+ * UsuarioComum Model
  *
- * @method \App\Model\Entity\Usuariocomum newEmptyEntity()
- * @method \App\Model\Entity\Usuariocomum newEntity(array $data, array $options = [])
- * @method \App\Model\Entity\Usuariocomum[] newEntities(array $data, array $options = [])
- * @method \App\Model\Entity\Usuariocomum get($primaryKey, $options = [])
- * @method \App\Model\Entity\Usuariocomum findOrCreate($search, ?callable $callback = null, $options = [])
- * @method \App\Model\Entity\Usuariocomum patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method \App\Model\Entity\Usuariocomum[] patchEntities(iterable $entities, array $data, array $options = [])
- * @method \App\Model\Entity\Usuariocomum|false save(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\Usuariocomum saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\Usuariocomum[]|\Cake\Datasource\ResultSetInterface|false saveMany(iterable $entities, $options = [])
- * @method \App\Model\Entity\Usuariocomum[]|\Cake\Datasource\ResultSetInterface saveManyOrFail(iterable $entities, $options = [])
- * @method \App\Model\Entity\Usuariocomum[]|\Cake\Datasource\ResultSetInterface|false deleteMany(iterable $entities, $options = [])
- * @method \App\Model\Entity\Usuariocomum[]|\Cake\Datasource\ResultSetInterface deleteManyOrFail(iterable $entities, $options = [])
+ * @property \App\Model\Table\ClassificacaoTable&\Cake\ORM\Association\HasMany $Classificacao
+ * @property \App\Model\Table\FeedbackTable&\Cake\ORM\Association\HasMany $Feedback
+ * @property \App\Model\Table\OcorrenciaTable&\Cake\ORM\Association\HasMany $Ocorrencia
+ *
+ * @method \App\Model\Entity\UsuarioComum newEmptyEntity()
+ * @method \App\Model\Entity\UsuarioComum newEntity(array $data, array $options = [])
+ * @method \App\Model\Entity\UsuarioComum[] newEntities(array $data, array $options = [])
+ * @method \App\Model\Entity\UsuarioComum get($primaryKey, $options = [])
+ * @method \App\Model\Entity\UsuarioComum findOrCreate($search, ?callable $callback = null, $options = [])
+ * @method \App\Model\Entity\UsuarioComum patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
+ * @method \App\Model\Entity\UsuarioComum[] patchEntities(iterable $entities, array $data, array $options = [])
+ * @method \App\Model\Entity\UsuarioComum|false save(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \App\Model\Entity\UsuarioComum saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \App\Model\Entity\UsuarioComum[]|\Cake\Datasource\ResultSetInterface|false saveMany(iterable $entities, $options = [])
+ * @method \App\Model\Entity\UsuarioComum[]|\Cake\Datasource\ResultSetInterface saveManyOrFail(iterable $entities, $options = [])
+ * @method \App\Model\Entity\UsuarioComum[]|\Cake\Datasource\ResultSetInterface|false deleteMany(iterable $entities, $options = [])
+ * @method \App\Model\Entity\UsuarioComum[]|\Cake\Datasource\ResultSetInterface deleteManyOrFail(iterable $entities, $options = [])
  */
-class UsuariocomumTable extends Table
+class UsuarioComumTable extends Table
 {
     /**
      * Initialize method
@@ -37,9 +41,19 @@ class UsuariocomumTable extends Table
     {
         parent::initialize($config);
 
-        $this->setTable('usuariocomum');
+        $this->setTable('usuario_comum');
         $this->setDisplayField('id_usuarioComum');
         $this->setPrimaryKey('id_usuarioComum');
+
+        $this->hasMany('Classificacao', [
+            'foreignKey' => 'usuariocomum_id',
+        ]);
+        $this->hasMany('Feedback', [
+            'foreignKey' => 'usuariocomum_id',
+        ]);
+        $this->hasMany('Ocorrencia', [
+            'foreignKey' => 'usuariocomum_id',
+        ]);
     }
 
     /**
@@ -55,9 +69,9 @@ class UsuariocomumTable extends Table
             ->allowEmptyString('id_usuarioComum', null, 'create');
 
         $validator
-            ->scalar('nomeUsuario')
-            ->maxLength('nomeUsuario', 120)
-            ->allowEmptyString('nomeUsuario');
+            ->scalar('nome')
+            ->maxLength('nome', 120)
+            ->allowEmptyString('nome');
 
         $validator
             ->scalar('telefone')

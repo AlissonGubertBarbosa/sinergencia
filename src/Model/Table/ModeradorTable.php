@@ -11,6 +11,9 @@ use Cake\Validation\Validator;
 /**
  * Moderador Model
  *
+ * @property \App\Model\Table\RolesTable&\Cake\ORM\Association\BelongsTo $Roles
+ * @property \App\Model\Table\EnderecoTable&\Cake\ORM\Association\BelongsTo $Endereco
+ *
  * @method \App\Model\Entity\Moderador newEmptyEntity()
  * @method \App\Model\Entity\Moderador newEntity(array $data, array $options = [])
  * @method \App\Model\Entity\Moderador[] newEntities(array $data, array $options = [])
@@ -24,6 +27,8 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\Moderador[]|\Cake\Datasource\ResultSetInterface saveManyOrFail(iterable $entities, $options = [])
  * @method \App\Model\Entity\Moderador[]|\Cake\Datasource\ResultSetInterface|false deleteMany(iterable $entities, $options = [])
  * @method \App\Model\Entity\Moderador[]|\Cake\Datasource\ResultSetInterface deleteManyOrFail(iterable $entities, $options = [])
+ *
+ * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class ModeradorTable extends Table
 {
@@ -40,6 +45,17 @@ class ModeradorTable extends Table
         $this->setTable('moderador');
         $this->setDisplayField('id_moderador');
         $this->setPrimaryKey('id_moderador');
+
+        $this->addBehavior('Timestamp');
+
+        $this->belongsTo('Roles', [
+            'foreignKey' => 'roles_id',
+            'joinType' => 'INNER',
+        ]);
+        $this->belongsTo('Endereco', [
+            'foreignKey' => 'endereco_id',
+            'joinType' => 'INNER',
+        ]);
     }
 
     /**
@@ -55,19 +71,28 @@ class ModeradorTable extends Table
             ->allowEmptyString('id_moderador', null, 'create');
 
         $validator
-            ->scalar('nomeModerador')
-            ->maxLength('nomeModerador', 120)
-            ->allowEmptyString('nomeModerador');
+            ->scalar('nome')
+            ->maxLength('nome', 120)
+            ->allowEmptyString('nome');
 
         $validator
-            ->scalar('nomeUsuario')
-            ->maxLength('nomeUsuario', 80)
-            ->allowEmptyString('nomeUsuario');
+            ->scalar('username')
+            ->maxLength('username', 80)
+            ->allowEmptyString('username');
 
         $validator
-            ->scalar('senha')
-            ->maxLength('senha', 50)
-            ->allowEmptyString('senha');
+            ->scalar('password')
+            ->maxLength('password', 50)
+            ->allowEmptyString('password');
+
+        $validator
+        ->add(
+            'confirm_password',
+            'compareWith', [
+                'rule' => ['compareWith', 'password'],
+                'message' => 'Passwords not equal.'
+            ]
+            );
 
         $validator
             ->scalar('telefone')
@@ -79,10 +104,22 @@ class ModeradorTable extends Table
             ->maxLength('sexo', 11)
             ->allowEmptyString('sexo');
 
-        $validator
-            ->integer('id_endereco')
-            ->allowEmptyString('id_endereco');
-
         return $validator;
+    }
+
+    /**
+     * Returns a rules checker object that will be used for validating
+     * application integrity.
+     *
+     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
+     * @return \Cake\ORM\RulesChecker
+     */
+    public function buildRules(RulesChecker $rules): RulesChecker
+    {
+        $rules->add($rules->isUnique(['username']), ['errorField' => 'username']);
+        $rules->add($rules->existsIn('roles_id', 'Roles'), ['errorField' => 'roles_id']);
+        $rules->add($rules->existsIn('endereco_id', 'Endereco'), ['errorField' => 'endereco_id']);
+
+        return $rules;
     }
 }

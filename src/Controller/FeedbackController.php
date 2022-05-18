@@ -18,6 +18,9 @@ class FeedbackController extends AppController
      */
     public function index()
     {
+        $this->paginate = [
+            'contain' => ['Ocorrencias', 'Usuariocomums', 'Instituicaos'],
+        ];
         $feedback = $this->paginate($this->Feedback);
 
         $this->set(compact('feedback'));
@@ -33,7 +36,7 @@ class FeedbackController extends AppController
     public function view($id = null)
     {
         $feedback = $this->Feedback->get($id, [
-            'contain' => [],
+            'contain' => ['Ocorrencias', 'Usuariocomums', 'Instituicaos', 'Classificacao'],
         ]);
 
         $this->set(compact('feedback'));
@@ -56,7 +59,10 @@ class FeedbackController extends AppController
             }
             $this->Flash->error(__('The feedback could not be saved. Please, try again.'));
         }
-        $this->set(compact('feedback'));
+        $ocorrencias = $this->Feedback->Ocorrencias->find('list', ['limit' => 200])->all();
+        $usuariocomums = $this->Feedback->Usuariocomums->find('list', ['limit' => 200])->all();
+        $instituicaos = $this->Feedback->Instituicaos->find('list', ['limit' => 200])->all();
+        $this->set(compact('feedback', 'ocorrencias', 'usuariocomums', 'instituicaos'));
     }
 
     /**
@@ -80,7 +86,10 @@ class FeedbackController extends AppController
             }
             $this->Flash->error(__('The feedback could not be saved. Please, try again.'));
         }
-        $this->set(compact('feedback'));
+        $ocorrencias = $this->Feedback->Ocorrencias->find('list', ['limit' => 200])->all();
+        $usuariocomums = $this->Feedback->Usuariocomums->find('list', ['limit' => 200])->all();
+        $instituicaos = $this->Feedback->Instituicaos->find('list', ['limit' => 200])->all();
+        $this->set(compact('feedback', 'ocorrencias', 'usuariocomums', 'instituicaos'));
     }
 
     /**

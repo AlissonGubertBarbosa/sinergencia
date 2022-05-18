@@ -7,7 +7,7 @@ namespace App\Controller;
  * Ocorrencia Controller
  *
  * @property \App\Model\Table\OcorrenciaTable $Ocorrencia
- * @method \App\Model\Entity\Ocorrencium[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
+ * @method \App\Model\Entity\Ocorrencia[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
 class OcorrenciaController extends AppController
 {
@@ -18,6 +18,9 @@ class OcorrenciaController extends AppController
      */
     public function index()
     {
+        $this->paginate = [
+            'contain' => ['Usuariocomum', 'Endereco'],
+        ];
         $ocorrencia = $this->paginate($this->Ocorrencia);
 
         $this->set(compact('ocorrencia'));
@@ -26,17 +29,17 @@ class OcorrenciaController extends AppController
     /**
      * View method
      *
-     * @param string|null $id Ocorrencium id.
+     * @param string|null $id Ocorrencia id.
      * @return \Cake\Http\Response|null|void Renders view
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function view($id = null)
     {
-        $ocorrencium = $this->Ocorrencia->get($id, [
-            'contain' => [],
+        $ocorrencia = $this->Ocorrencia->get($id, [
+            'contain' => ['Usuariocomum', 'Endereco'],
         ]);
 
-        $this->set(compact('ocorrencium'));
+        $this->set(compact('ocorrencia'));
     }
 
     /**
@@ -46,58 +49,62 @@ class OcorrenciaController extends AppController
      */
     public function add()
     {
-        $ocorrencium = $this->Ocorrencia->newEmptyEntity();
+        $ocorrencia = $this->Ocorrencia->newEmptyEntity();
         if ($this->request->is('post')) {
-            $ocorrencium = $this->Ocorrencia->patchEntity($ocorrencium, $this->request->getData());
-            if ($this->Ocorrencia->save($ocorrencium)) {
-                $this->Flash->success(__('The ocorrencium has been saved.'));
+            $ocorrencia = $this->Ocorrencia->patchEntity($ocorrencia, $this->request->getData());
+            if ($this->Ocorrencia->save($ocorrencia)) {
+                $this->Flash->success(__('The ocorrencia has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The ocorrencium could not be saved. Please, try again.'));
+            $this->Flash->error(__('The ocorrencia could not be saved. Please, try again.'));
         }
-        $this->set(compact('ocorrencium'));
+        $usuariocomum = $this->Ocorrencia->Usuariocomum->find('list', ['limit' => 200])->all();
+        $endereco = $this->Ocorrencia->Endereco->find('list', ['limit' => 200])->all();
+        $this->set(compact('ocorrencia', 'usuariocomum', 'endereco'));
     }
 
     /**
      * Edit method
      *
-     * @param string|null $id Ocorrencium id.
+     * @param string|null $id Ocorrencia id.
      * @return \Cake\Http\Response|null|void Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function edit($id = null)
     {
-        $ocorrencium = $this->Ocorrencia->get($id, [
+        $ocorrencia = $this->Ocorrencia->get($id, [
             'contain' => [],
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $ocorrencium = $this->Ocorrencia->patchEntity($ocorrencium, $this->request->getData());
-            if ($this->Ocorrencia->save($ocorrencium)) {
-                $this->Flash->success(__('The ocorrencium has been saved.'));
+            $ocorrencia = $this->Ocorrencia->patchEntity($ocorrencia, $this->request->getData());
+            if ($this->Ocorrencia->save($ocorrencia)) {
+                $this->Flash->success(__('The ocorrencia has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The ocorrencium could not be saved. Please, try again.'));
+            $this->Flash->error(__('The ocorrencia could not be saved. Please, try again.'));
         }
-        $this->set(compact('ocorrencium'));
+        $usuariocomum = $this->Ocorrencia->Usuariocomum->find('list', ['limit' => 200])->all();
+        $endereco = $this->Ocorrencia->Endereco->find('list', ['limit' => 200])->all();
+        $this->set(compact('ocorrencia', 'usuariocomum', 'endereco'));
     }
 
     /**
      * Delete method
      *
-     * @param string|null $id Ocorrencium id.
+     * @param string|null $id Ocorrencia id.
      * @return \Cake\Http\Response|null|void Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
-        $ocorrencium = $this->Ocorrencia->get($id);
-        if ($this->Ocorrencia->delete($ocorrencium)) {
-            $this->Flash->success(__('The ocorrencium has been deleted.'));
+        $ocorrencia = $this->Ocorrencia->get($id);
+        if ($this->Ocorrencia->delete($ocorrencia)) {
+            $this->Flash->success(__('The ocorrencia has been deleted.'));
         } else {
-            $this->Flash->error(__('The ocorrencium could not be deleted. Please, try again.'));
+            $this->Flash->error(__('The ocorrencia could not be deleted. Please, try again.'));
         }
 
         return $this->redirect(['action' => 'index']);

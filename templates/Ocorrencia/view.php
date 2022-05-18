@@ -1,50 +1,48 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \App\Model\Entity\Ocorrencium $ocorrencium
+ * @var \App\Model\Entity\Ocorrencia $ocorrencia
  */
 ?>
 <div class="row">
-    <aside class="column-responsive column-20">
+    <aside class="column">
         <div class="side-nav">
-            <h4 class="heading"><?= __('Ver') ?></h4>
-            <?= $this->Html->link(__('Editar'), ['action' => 'edit', $ocorrencium->id_ocorrencia], ['class' => 'side-nav-item']) ?>
-            <?= $this->Form->postLink(__('Excluir'), ['action' => 'delete', $ocorrencium->id_ocorrencia], ['confirm' => __('Are you sure you want to delete # {0}?', $ocorrencium->id_ocorrencia), 'class' => 'side-nav-item']) ?>
-            <?= $this->Html->link(__('Listar'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
-            <?= $this->Html->link(__('Nova ocorrência'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
+            <h4 class="heading"><?= __('Actions') ?></h4>
+            <?= $this->Html->link(__('Edit Ocorrencia'), ['action' => 'edit', $ocorrencia->id_ocorrencia], ['class' => 'side-nav-item']) ?>
+            <?= $this->Form->postLink(__('Delete Ocorrencia'), ['action' => 'delete', $ocorrencia->id_ocorrencia], ['confirm' => __('Are you sure you want to delete # {0}?', $ocorrencia->id_ocorrencia), 'class' => 'side-nav-item']) ?>
+            <?= $this->Html->link(__('List Ocorrencia'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
+            <?= $this->Html->link(__('New Ocorrencia'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
-    <div class="column-responsive column-60">
+    <div class="column-responsive column-80">
         <div class="ocorrencia view content">
-            <h3><?= h($ocorrencium->id_ocorrencia) ?></h3>
+            <h3><?= h($ocorrencia->id_ocorrencia) ?></h3>
             <table>
                 <tr>
-                    <th><?= __('Estado') ?></th>
-                    <td><?= h($ocorrencium->status) ?></td>
+                    <th><?= __('Descricao') ?></th>
+                    <td><?= h($ocorrencia->descricao) ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Status') ?></th>
+                    <td><?= h($ocorrencia>status) ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Usuariocomum') ?></th>
+                    <td><?= $ocorrencia->has('usuariocomum') ? $this->Html->link($ocorrencia->usuariocomum->id_usuarioComum, ['controller' => 'Usuariocomum', 'action' => 'view', $ocorrencia->usuariocomum->id_usuarioComum]) : '' ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Id Ocorrencia') ?></th>
-                    <td><?= $this->Number->format($ocorrencium->id_ocorrencia) ?></td>
+                    <td><?= $this->Number->format($ocorrencia->id_ocorrencia) ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Nome Usuario') ?></th>
-                    <td><?= $this->Number->format($ocorrencium->id_usuarioComum) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Endereço') ?></th>
-                    <td><?= $this->Number->format($ocorrencium->id_enderecoOcorrencia) ?></td>
+                    <th><?= __('Endereco Id') ?></th>
+                    <td><?= $this->Number->format($ocorrencia->endereco_id) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Data Criacao') ?></th>
-                    <td><?= h($ocorrencium->data_Criacao) ?></td>
+                    <td><?= h($ocorrencia->data_Criacao) ?></td>
                 </tr>
             </table>
-            <div class="text">
-                <strong><?= __('Descricao') ?></strong>
-                <blockquote>
-                    <?= $this->Text->autoParagraph(h($ocorrencium->descricao)); ?>
-                </blockquote>
-            </div>
         </div>
     </div>
 </div>

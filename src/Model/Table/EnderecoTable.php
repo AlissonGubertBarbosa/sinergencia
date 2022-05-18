@@ -38,8 +38,18 @@ class EnderecoTable extends Table
         parent::initialize($config);
 
         $this->setTable('endereco');
-        $this->setDisplayField('id_endereco');
+        $this->setDisplayField('logradouro', 'numero', 'cidade');
         $this->setPrimaryKey('id_endereco');
+
+        $this->hasMany('Instituicao', [
+            'foreignKey' => 'endereco_id',
+        ]);
+        $this->hasMany('Moderador', [
+            'foreignKey' => 'endereco_id',
+        ]);
+        $this->hasMany('Ocorrencia', [
+            'foreignKey' => 'endereco_id',
+        ]);
     }
 
     /**
@@ -56,30 +66,36 @@ class EnderecoTable extends Table
 
         $validator
             ->scalar('logradouro')
+            ->maxLength('logradouro', 200)
             ->requirePresence('logradouro', 'create')
             ->notEmptyString('logradouro');
 
         $validator
-            ->integer('numero')
+            ->scalar('numero')
+            ->maxLength('numero', 10)
             ->allowEmptyString('numero');
 
         $validator
             ->scalar('bairro')
+            ->maxLength('bairro', 50)
             ->requirePresence('bairro', 'create')
             ->notEmptyString('bairro');
 
         $validator
             ->scalar('complemento')
+            ->maxLength('complemento', 50)
             ->requirePresence('complemento', 'create')
             ->notEmptyString('complemento');
 
         $validator
             ->scalar('cidade')
+            ->maxLength('cidade', 100)
             ->requirePresence('cidade', 'create')
             ->notEmptyString('cidade');
 
         $validator
             ->scalar('estado')
+            ->maxLength('estado', 100)
             ->requirePresence('estado', 'create')
             ->notEmptyString('estado');
 

@@ -40,6 +40,15 @@ class ClassificacaoTable extends Table
         $this->setTable('classificacao');
         $this->setDisplayField('id_classificacao');
         $this->setPrimaryKey('id_classificacao');
+
+        $this->belongsTo('Feedback', [
+            'foreignKey' => 'feedback_id',
+            'joinType' => 'INNER',
+        ]);
+        $this->belongsTo('Usuariocomums', [
+            'foreignKey' => 'usuariocomum_id',
+            'joinType' => 'INNER',
+        ]);
     }
 
     /**
@@ -51,25 +60,13 @@ class ClassificacaoTable extends Table
     public function validationDefault(Validator $validator): Validator
     {
         $validator
-            ->integer('id_classificacao')
-            ->allowEmptyString('id_classificacao', null, 'create');
+            ->integer('id')
+            ->allowEmptyString('id', null, 'create');
 
         $validator
             ->integer('nota')
             ->requirePresence('nota', 'create')
             ->notEmptyString('nota');
-
-        $validator
-            ->integer('id_feedback')
-            ->requirePresence('id_feedback', 'create')
-            ->notEmptyString('id_feedback')
-            ->add('id_feedback', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
-
-        $validator
-            ->integer('id_usuarioComum')
-            ->requirePresence('id_usuarioComum', 'create')
-            ->notEmptyString('id_usuarioComum')
-            ->add('id_usuarioComum', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
 
         return $validator;
     }
@@ -83,8 +80,8 @@ class ClassificacaoTable extends Table
      */
     public function buildRules(RulesChecker $rules): RulesChecker
     {
-        $rules->add($rules->isUnique(['id_feedback']), ['errorField' => 'id_feedback']);
-        $rules->add($rules->isUnique(['id_usuarioComum']), ['errorField' => 'id_usuarioComum']);
+        $rules->add($rules->existsIn('feedback_id', 'Feedback'), ['errorField' => 'feedback_id']);
+        $rules->add($rules->existsIn('usuariocomum_id', 'Usuariocomums'), ['errorField' => 'usuariocomum_id']);
 
         return $rules;
     }

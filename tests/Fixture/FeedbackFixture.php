@@ -20,10 +20,10 @@ class FeedbackFixture extends TestFixture
         $this->records = [
             [
                 'id_feedback' => 1,
-                'devolutiva' => 'Lorem ipsum dolor sit amet, aliquet feugiat. Convallis morbi fringilla gravida, phasellus feugiat dapibus velit nunc, pulvinar eget sollicitudin venenatis cum nullam, vivamus ut a sed, mollitia lectus. Nulla vestibulum massa neque ut et, id hendrerit sit, feugiat in taciti enim proin nibh, tempor dignissim, rhoncus duis vestibulum nunc mattis convallis.',
-                'id_ocorrencia' => 1,
-                'id_usuarioComum' => 1,
-                'id_instituicao' => 1,
+                'devolutiva' => 'Lorem ipsum dolor sit amet',
+                'ocorrencia_id' => 1,
+                'usuariocomum_id' => 1,
+                'instituicao_id' => 1,
             ],
         ];
         parent::init();

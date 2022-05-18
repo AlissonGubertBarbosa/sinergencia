@@ -6,16 +6,14 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Ocorrencium Entity
+ * Role Entity
  *
- * @property int $id_ocorrencia
- * @property string $descricao
- * @property string $status
- * @property \Cake\I18n\FrozenTime|null $data_Criacao
- * @property int|null $id_usuarioComum
- * @property int|null $id_enderecoOcorrencia
+ * @property int $id
+ * @property string $role
+ * @property \Cake\I18n\FrozenTime $created
+ * @property \Cake\I18n\FrozenTime $modified
  */
-class Ocorrencium extends Entity
+class Role extends Entity
 {
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
@@ -27,10 +25,8 @@ class Ocorrencium extends Entity
      * @var array
      */
     protected $_accessible = [
-        'descricao' => true,
-        'status' => true,
-        'data_Criacao' => true,
-        'id_usuarioComum' => true,
-        'id_enderecoOcorrencia' => true,
+        'role' => true,
+        'created' => true,
+        'modified' => true,
     ];
 }

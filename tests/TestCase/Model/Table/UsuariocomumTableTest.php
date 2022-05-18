@@ -3,20 +3,20 @@ declare(strict_types=1);
 
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\UsuariocomumTable;
+use App\Model\Table\UsuarioComumTable;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\UsuariocomumTable Test Case
+ * App\Model\Table\UsuarioComumTable Test Case
  */
-class UsuariocomumTableTest extends TestCase
+class UsuarioComumTableTest extends TestCase
 {
     /**
      * Test subject
      *
-     * @var \App\Model\Table\UsuariocomumTable
+     * @var \App\Model\Table\UsuarioComumTable
      */
-    protected $Usuariocomum;
+    protected $UsuarioComum;
 
     /**
      * Fixtures
@@ -24,7 +24,10 @@ class UsuariocomumTableTest extends TestCase
      * @var array
      */
     protected $fixtures = [
-        'app.Usuariocomum',
+        'app.UsuarioComum',
+        'app.Classificacao',
+        'app.Feedback',
+        'app.Ocorrencia',
     ];
 
     /**
@@ -35,8 +38,8 @@ class UsuariocomumTableTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $config = $this->getTableLocator()->exists('Usuariocomum') ? [] : ['className' => UsuariocomumTable::class];
-        $this->Usuariocomum = $this->getTableLocator()->get('Usuariocomum', $config);
+        $config = $this->getTableLocator()->exists('UsuarioComum') ? [] : ['className' => UsuarioComumTable::class];
+        $this->UsuarioComum = $this->getTableLocator()->get('UsuarioComum', $config);
     }
 
     /**
@@ -46,19 +49,8 @@ class UsuariocomumTableTest extends TestCase
      */
     public function tearDown(): void
     {
-        unset($this->Usuariocomum);
+        unset($this->UsuarioComum);
 
         parent::tearDown();
-    }
-
-    /**
-     * Test validationDefault method
-     *
-     * @return void
-     * @uses \App\Model\Table\UsuariocomumTable::validationDefault()
-     */
-    public function testValidationDefault(): void
-    {
-        $this->markTestIncomplete('Not implemented yet.');
     }
 }

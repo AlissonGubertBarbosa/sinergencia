@@ -1,34 +1,34 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \App\Model\Entity\Usuariocomum[]|\Cake\Collection\CollectionInterface $usuariocomum
+ * @var \App\Model\Entity\UsuarioComum[]|\Cake\Collection\CollectionInterface $usuarioComum
  */
 ?>
-<div class="column-responsive column-20">
-    <?= $this->Html->link(__('Novo cadastro'), ['action' => 'add'], ['class' => 'button float-right']) ?>
+<div class="usuarioComum index content">
+    <?= $this->Html->link(__('New Usuario Comum'), ['action' => 'add'], ['class' => 'button float-right']) ?>
     <h3><?= __('Usuario Comum') ?></h3>
     <div class="table-responsive">
         <table>
             <thead>
                 <tr>
-                    <th><?= $this->Paginator->sort('Identificador') ?></th>
-                    <th><?= $this->Paginator->sort('Nome') ?></th>
+                    <th><?= $this->Paginator->sort('id_usuarioComum') ?></th>
+                    <th><?= $this->Paginator->sort('nome') ?></th>
                     <th><?= $this->Paginator->sort('telefone') ?></th>
                     <th><?= $this->Paginator->sort('sexo') ?></th>
-                    <th class="actions"><?= __('Ações') ?></th>
+                    <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($usuariocomum as $usuariocomum): ?>
+                <?php foreach ($usuarioComum as $usuarioComum): ?>
                 <tr>
-                    <td><?= $this->Number->format($usuariocomum->id_usuarioComum) ?></td>
-                    <td><?= h($usuariocomum->nomeUsuario) ?></td>
-                    <td><?= h($usuariocomum->telefone) ?></td>
-                    <td><?= h($usuariocomum->sexo) ?></td>
+                    <td><?= $this->Number->format($usuarioComum->id_usuarioComum) ?></td>
+                    <td><?= h($usuarioComum->nome) ?></td>
+                    <td><?= h($usuarioComum->telefone) ?></td>
+                    <td><?= h($usuarioComum->sexo) ?></td>
                     <td class="actions">
-                        <?= $this->Html->link(__('Ver'), ['action' => 'view', $usuariocomum->id_usuarioComum]) ?>
-                        <?= $this->Html->link(__('Editar'), ['action' => 'edit', $usuariocomum->id_usuarioComum]) ?>
-                        <?= $this->Form->postLink(__('Excluir'), ['action' => 'delete', $usuariocomum->id_usuarioComum], ['confirm' => __('Are you sure you want to delete # {0}?', $usuariocomum->id_usuarioComum)]) ?>
+                        <?= $this->Html->link(__('View'), ['action' => 'view', $usuarioComum->id_usuarioComum]) ?>
+                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $usuarioComum->id_usuarioComum]) ?>
+                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $usuarioComum->id_usuarioComum], ['confirm' => __('Are you sure you want to delete # {0}?', $usuarioComum->id_usuarioComum)]) ?>
                     </td>
                 </tr>
                 <?php endforeach; ?>
@@ -37,12 +37,12 @@
     </div>
     <div class="paginator">
         <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('primeior')) ?>
-            <?= $this->Paginator->prev('< ' . __('anterior')) ?>
+            <?= $this->Paginator->first('<< ' . __('first')) ?>
+            <?= $this->Paginator->prev('< ' . __('previous')) ?>
             <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('próximo') . ' >') ?>
-            <?= $this->Paginator->last(__('último') . ' >>') ?>
+            <?= $this->Paginator->next(__('next') . ' >') ?>
+            <?= $this->Paginator->last(__('last') . ' >>') ?>
         </ul>
-        <p><?= $this->Paginator->counter(__('Página {{page}} de {{pages}}')) ?></p>
+        <p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>
     </div>
 </div>

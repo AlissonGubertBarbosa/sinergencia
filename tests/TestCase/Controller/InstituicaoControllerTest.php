@@ -23,6 +23,7 @@ class InstituicaoControllerTest extends TestCase
      */
     protected $fixtures = [
         'app.Instituicao',
+        'app.Roles',
     ];
 
     /**

@@ -26,12 +26,15 @@ class ModeradorFixture extends TestFixture
         $this->records = [
             [
                 'id_moderador' => 1,
-                'nomeModerador' => 'Lorem ipsum dolor sit amet',
-                'nomeUsuario' => 'Lorem ipsum dolor sit amet',
-                'senha' => 'Lorem ipsum dolor sit amet',
+                'nome' => 'Lorem ipsum dolor sit amet',
+                'username' => 'Lorem ipsum dolor sit amet',
+                'password' => 'Lorem ipsum dolor sit amet',
                 'telefone' => 'Lorem ipsum dolor sit amet',
                 'sexo' => 'Lorem ips',
-                'id_endereco' => 1,
+                'roles_id' => 1,
+                'created' => '2022-05-15 05:47:46',
+                'modified' => '2022-05-15 05:47:46',
+                'endereco_id' => 1,
             ],
         ];
         parent::init();

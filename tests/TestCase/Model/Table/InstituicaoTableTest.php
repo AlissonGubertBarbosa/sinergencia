@@ -25,6 +25,7 @@ class InstituicaoTableTest extends TestCase
      */
     protected $fixtures = [
         'app.Instituicao',
+        'app.Roles',
     ];
 
     /**
@@ -58,6 +59,17 @@ class InstituicaoTableTest extends TestCase
      * @uses \App\Model\Table\InstituicaoTable::validationDefault()
      */
     public function testValidationDefault(): void
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test buildRules method
+     *
+     * @return void
+     * @uses \App\Model\Table\InstituicaoTable::buildRules()
+     */
+    public function testBuildRules(): void
     {
         $this->markTestIncomplete('Not implemented yet.');
     }

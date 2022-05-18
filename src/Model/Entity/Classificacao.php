@@ -8,10 +8,10 @@ use Cake\ORM\Entity;
 /**
  * Classificacao Entity
  *
- * @property int $id_classificacao
+ * @property int $id
  * @property int $nota
- * @property int $id_feedback
- * @property int $id_usuarioComum
+ * @property int $feedback_id
+ * @property int $usuariocomum_id
  */
 class Classificacao extends Entity
 {
@@ -26,7 +26,7 @@ class Classificacao extends Entity
      */
     protected $_accessible = [
         'nota' => true,
-        'id_feedback' => true,
-        'id_usuarioComum' => true,
+        'feedback_id' => true,
+        'usuariocomum_id' => true,
     ];
 }

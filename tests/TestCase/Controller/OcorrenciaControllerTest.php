@@ -23,6 +23,8 @@ class OcorrenciaControllerTest extends TestCase
      */
     protected $fixtures = [
         'app.Ocorrencia',
+        'app.Usuariocomum',
+        'app.Enderecos',
     ];
 
     /**

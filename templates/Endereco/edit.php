@@ -5,21 +5,22 @@
  */
 ?>
 <div class="row">
-    <aside class="column-responsive column-20">
+    <aside class="column">
         <div class="side-nav">
-            <h4 class="heading"><?= __('Editar') ?></h4>
+            <h4 class="heading"><?= __('Actions') ?></h4>
             <?= $this->Form->postLink(
-                __('Excluir'),
+                __('Delete'),
                 ['action' => 'delete', $endereco->id_endereco],
                 ['confirm' => __('Are you sure you want to delete # {0}?', $endereco->id_endereco), 'class' => 'side-nav-item']
             ) ?>
-            <?= $this->Html->link(__('Listar'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
+            <?= $this->Html->link(__('List Endereco'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
-    <div class="column-responsive column-60">
+    <div class="column-responsive column-80">
         <div class="endereco form content">
             <?= $this->Form->create($endereco) ?>
             <fieldset>
+                <legend><?= __('Edit Endereco') ?></legend>
                 <?php
                     echo $this->Form->control('logradouro');
                     echo $this->Form->control('numero');
@@ -29,7 +30,7 @@
                     echo $this->Form->control('estado');
                 ?>
             </fieldset>
-            <?= $this->Form->button(__('Enviar')) ?>
+            <?= $this->Form->button(__('Submit')) ?>
             <?= $this->Form->end() ?>
         </div>
     </div>

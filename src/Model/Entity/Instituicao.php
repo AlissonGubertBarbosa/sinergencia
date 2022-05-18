@@ -9,12 +9,17 @@ use Cake\ORM\Entity;
  * Instituicao Entity
  *
  * @property int $id_instituicao
- * @property string|null $nomeInstituição
- * @property string|null $nomeUsuario
- * @property string|null $senha
+ * @property string|null $nome
+ * @property string|null $username
+ * @property string|null $password
  * @property string|null $telefone
  * @property string|null $email
- * @property int|null $id_endereco
+ * @property int $roles_id
+ * @property \Cake\I18n\FrozenTime $created
+ * @property \Cake\I18n\FrozenTime $modified
+ * @property int $endereco_id
+ *
+ * @property \App\Model\Entity\Role $role
  */
 class Instituicao extends Entity
 {
@@ -28,11 +33,24 @@ class Instituicao extends Entity
      * @var array
      */
     protected $_accessible = [
-        'nomeInstituição' => true,
-        'nomeUsuario' => true,
-        'senha' => true,
+        'nome' => true,
+        'username' => true,
+        'password' => true,
         'telefone' => true,
         'email' => true,
+        'roles_id' => true,
+        'created' => true,
+        'modified' => true,
         'id_endereco' => true,
+        'role' => true,
+    ];
+
+    /**
+     * Fields that are excluded from JSON versions of the entity.
+     *
+     * @var array
+     */
+    protected $_hidden = [
+        'password',
     ];
 }

@@ -25,6 +25,8 @@ class OcorrenciaTableTest extends TestCase
      */
     protected $fixtures = [
         'app.Ocorrencia',
+        'app.Usuariocomum',
+        'app.Enderecos',
     ];
 
     /**
@@ -58,6 +60,17 @@ class OcorrenciaTableTest extends TestCase
      * @uses \App\Model\Table\OcorrenciaTable::validationDefault()
      */
     public function testValidationDefault(): void
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test buildRules method
+     *
+     * @return void
+     * @uses \App\Model\Table\OcorrenciaTable::buildRules()
+     */
+    public function testBuildRules(): void
     {
         $this->markTestIncomplete('Not implemented yet.');
     }

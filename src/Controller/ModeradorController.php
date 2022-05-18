@@ -18,6 +18,9 @@ class ModeradorController extends AppController
      */
     public function index()
     {
+        $this->paginate = [
+            'contain' => ['Roles', 'Endereco'],
+        ];
         $moderador = $this->paginate($this->Moderador);
 
         $this->set(compact('moderador'));
@@ -33,7 +36,7 @@ class ModeradorController extends AppController
     public function view($id = null)
     {
         $moderador = $this->Moderador->get($id, [
-            'contain' => [],
+            'contain' => ['Roles', 'Endereco'],
         ]);
 
         $this->set(compact('moderador'));
@@ -56,7 +59,9 @@ class ModeradorController extends AppController
             }
             $this->Flash->error(__('The moderador could not be saved. Please, try again.'));
         }
-        $this->set(compact('moderador'));
+        $roles = $this->Moderador->Roles->find('list', ['limit' => 200])->all();
+        $endereco = $this->Moderador->Endereco->find('list', ['limit' => 200])->all();
+        $this->set(compact('moderador', 'roles', 'endereco'));
     }
 
     /**
@@ -80,7 +85,9 @@ class ModeradorController extends AppController
             }
             $this->Flash->error(__('The moderador could not be saved. Please, try again.'));
         }
-        $this->set(compact('moderador'));
+        $roles = $this->Moderador->Roles->find('list', ['limit' => 200])->all();
+        $endereco = $this->Moderador->Endereco->find('list', ['limit' => 200])->all();
+        $this->set(compact('moderador', 'roles', 'endereco'));
     }
 
     /**

@@ -10,7 +10,7 @@ use Cake\ORM\Entity;
  *
  * @property int $id_endereco
  * @property string $logradouro
- * @property int|null $numero
+ * @property string|null $numero
  * @property string $bairro
  * @property string $complemento
  * @property string $cidade

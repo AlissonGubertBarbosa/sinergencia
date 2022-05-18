@@ -3,16 +3,16 @@ declare(strict_types=1);
 
 namespace App\Test\TestCase\Controller;
 
-use App\Controller\FeedbackController;
+use App\Controller\RolesController;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Controller\FeedbackController Test Case
+ * App\Controller\RolesController Test Case
  *
- * @uses \App\Controller\FeedbackController
+ * @uses \App\Controller\RolesController
  */
-class FeedbackControllerTest extends TestCase
+class RolesControllerTest extends TestCase
 {
     use IntegrationTestTrait;
 
@@ -22,18 +22,14 @@ class FeedbackControllerTest extends TestCase
      * @var array
      */
     protected $fixtures = [
-        'app.Feedback',
-        'app.Ocorrencias',
-        'app.Usuariocomums',
-        'app.Instituicaos',
-        'app.Classificacao',
+        'app.Roles',
     ];
 
     /**
      * Test index method
      *
      * @return void
-     * @uses \App\Controller\FeedbackController::index()
+     * @uses \App\Controller\RolesController::index()
      */
     public function testIndex(): void
     {
@@ -44,7 +40,7 @@ class FeedbackControllerTest extends TestCase
      * Test view method
      *
      * @return void
-     * @uses \App\Controller\FeedbackController::view()
+     * @uses \App\Controller\RolesController::view()
      */
     public function testView(): void
     {
@@ -55,7 +51,7 @@ class FeedbackControllerTest extends TestCase
      * Test add method
      *
      * @return void
-     * @uses \App\Controller\FeedbackController::add()
+     * @uses \App\Controller\RolesController::add()
      */
     public function testAdd(): void
     {
@@ -66,7 +62,7 @@ class FeedbackControllerTest extends TestCase
      * Test edit method
      *
      * @return void
-     * @uses \App\Controller\FeedbackController::edit()
+     * @uses \App\Controller\RolesController::edit()
      */
     public function testEdit(): void
     {
@@ -77,7 +73,7 @@ class FeedbackControllerTest extends TestCase
      * Test delete method
      *
      * @return void
-     * @uses \App\Controller\FeedbackController::delete()
+     * @uses \App\Controller\RolesController::delete()
      */
     public function testDelete(): void
     {

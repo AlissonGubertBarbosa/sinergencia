@@ -6,20 +6,19 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Feedback Entity
+ * Ocorrencium Entity
  *
- * @property int $id_feedback
- * @property string $devolutiva
- * @property int $ocorrencia_id
+ * @property int $id_ocorrencia
+ * @property string $descricao
+ * @property string $status
+ * @property \Cake\I18n\FrozenTime|null $data_Criacao
  * @property int $usuariocomum_id
- * @property int $instituicao_id
+ * @property int $endereco_id
  *
- * @property \App\Model\Entity\Ocorrencia $ocorrencia
  * @property \App\Model\Entity\Usuariocomum $usuariocomum
- * @property \App\Model\Entity\Instituicao $instituicao
- * @property \App\Model\Entity\Classificacao[] $classificacao
+ * @property \App\Model\Entity\Endereco $endereco
  */
-class Feedback extends Entity
+class Ocorrencium extends Entity
 {
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
@@ -31,13 +30,12 @@ class Feedback extends Entity
      * @var array
      */
     protected $_accessible = [
-        'devolutiva' => true,
-        'ocorrencia_id' => true,
+        'descricao' => true,
+        'status' => true,
+        'data_Criacao' => true,
         'usuariocomum_id' => true,
-        'instituicao_id' => true,
-        'ocorrencia' => true,
+        'endereco_id' => true,
         'usuariocomum' => true,
-        'instituicao' => true,
-        'classificacao' => true,
+        'endereco' => true,
     ];
 }

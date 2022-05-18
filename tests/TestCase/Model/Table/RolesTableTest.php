@@ -3,20 +3,20 @@ declare(strict_types=1);
 
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\ModeradorTable;
+use App\Model\Table\RolesTable;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\ModeradorTable Test Case
+ * App\Model\Table\RolesTable Test Case
  */
-class ModeradorTableTest extends TestCase
+class RolesTableTest extends TestCase
 {
     /**
      * Test subject
      *
-     * @var \App\Model\Table\ModeradorTable
+     * @var \App\Model\Table\RolesTable
      */
-    protected $Moderador;
+    protected $Roles;
 
     /**
      * Fixtures
@@ -24,7 +24,6 @@ class ModeradorTableTest extends TestCase
      * @var array
      */
     protected $fixtures = [
-        'app.Moderador',
         'app.Roles',
     ];
 
@@ -36,8 +35,8 @@ class ModeradorTableTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $config = $this->getTableLocator()->exists('Moderador') ? [] : ['className' => ModeradorTable::class];
-        $this->Moderador = $this->getTableLocator()->get('Moderador', $config);
+        $config = $this->getTableLocator()->exists('Roles') ? [] : ['className' => RolesTable::class];
+        $this->Roles = $this->getTableLocator()->get('Roles', $config);
     }
 
     /**
@@ -47,7 +46,7 @@ class ModeradorTableTest extends TestCase
      */
     public function tearDown(): void
     {
-        unset($this->Moderador);
+        unset($this->Roles);
 
         parent::tearDown();
     }
@@ -56,20 +55,9 @@ class ModeradorTableTest extends TestCase
      * Test validationDefault method
      *
      * @return void
-     * @uses \App\Model\Table\ModeradorTable::validationDefault()
+     * @uses \App\Model\Table\RolesTable::validationDefault()
      */
     public function testValidationDefault(): void
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
-
-    /**
-     * Test buildRules method
-     *
-     * @return void
-     * @uses \App\Model\Table\ModeradorTable::buildRules()
-     */
-    public function testBuildRules(): void
     {
         $this->markTestIncomplete('Not implemented yet.');
     }

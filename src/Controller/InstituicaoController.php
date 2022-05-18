@@ -18,6 +18,9 @@ class InstituicaoController extends AppController
      */
     public function index()
     {
+        $this->paginate = [
+            'contain' => ['Roles', 'Endereco'],
+        ];
         $instituicao = $this->paginate($this->Instituicao);
 
         $this->set(compact('instituicao'));
@@ -33,7 +36,7 @@ class InstituicaoController extends AppController
     public function view($id = null)
     {
         $instituicao = $this->Instituicao->get($id, [
-            'contain' => [],
+            'contain' => ['Roles', 'Endereco'],
         ]);
 
         $this->set(compact('instituicao'));
@@ -56,7 +59,9 @@ class InstituicaoController extends AppController
             }
             $this->Flash->error(__('The instituicao could not be saved. Please, try again.'));
         }
-        $this->set(compact('instituicao'));
+        $roles = $this->Instituicao->Roles->find('list', ['limit' => 200])->all();
+        $endereco = $this->Instituicao->Endereco->find('list', ['limit' => 200])->all();
+        $this->set(compact('instituicao', 'roles', 'endereco'));
     }
 
     /**
@@ -80,7 +85,9 @@ class InstituicaoController extends AppController
             }
             $this->Flash->error(__('The instituicao could not be saved. Please, try again.'));
         }
-        $this->set(compact('instituicao'));
+        $roles = $this->Instituicao->Roles->find('list', ['limit' => 200])->all();
+        $endereco = $this->Instituicao->Endereco->find('list', ['limit' => 200])->all();
+        $this->set(compact('instituicao', 'roles', 'endereco'));
     }
 
     /**

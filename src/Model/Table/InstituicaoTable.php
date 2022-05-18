@@ -11,6 +11,8 @@ use Cake\Validation\Validator;
 /**
  * Instituicao Model
  *
+ * @property \App\Model\Table\RolesTable&\Cake\ORM\Association\BelongsTo $Roles
+ *
  * @method \App\Model\Entity\Instituicao newEmptyEntity()
  * @method \App\Model\Entity\Instituicao newEntity(array $data, array $options = [])
  * @method \App\Model\Entity\Instituicao[] newEntities(array $data, array $options = [])
@@ -24,6 +26,8 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\Instituicao[]|\Cake\Datasource\ResultSetInterface saveManyOrFail(iterable $entities, $options = [])
  * @method \App\Model\Entity\Instituicao[]|\Cake\Datasource\ResultSetInterface|false deleteMany(iterable $entities, $options = [])
  * @method \App\Model\Entity\Instituicao[]|\Cake\Datasource\ResultSetInterface deleteManyOrFail(iterable $entities, $options = [])
+ *
+ * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class InstituicaoTable extends Table
 {
@@ -40,6 +44,20 @@ class InstituicaoTable extends Table
         $this->setTable('instituicao');
         $this->setDisplayField('id_instituicao');
         $this->setPrimaryKey('id_instituicao');
+
+        $this->addBehavior('Timestamp');
+
+        $this->belongsTo('Roles', [
+            'foreignKey' => 'roles_id',
+            'joinType' => 'INNER',
+        ]);
+        $this->belongsTo('Endereco', [
+            'foreignKey' => 'endereco_id',
+            'joinType' => 'INNER',
+        ]);
+        $this->hasMany('Feedback', [
+            'foreignKey' => 'instituicao_id',
+        ]);
     }
 
     /**
@@ -55,19 +73,29 @@ class InstituicaoTable extends Table
             ->allowEmptyString('id_instituicao', null, 'create');
 
         $validator
-            ->scalar('nomeInstituição')
-            ->maxLength('nomeInstituição', 120)
-            ->allowEmptyString('nomeInstituição');
+            ->scalar('nome')
+            ->maxLength('nome', 120)
+            ->allowEmptyString('nome');
 
         $validator
-            ->scalar('nomeUsuario')
-            ->maxLength('nomeUsuario', 100)
-            ->allowEmptyString('nomeUsuario');
+            ->scalar('username')
+            ->maxLength('username', 100)
+            ->allowEmptyString('username');
 
         $validator
-            ->scalar('senha')
-            ->maxLength('senha', 50)
-            ->allowEmptyString('senha');
+            ->scalar('password')
+            ->maxLength('password', 50)
+            ->allowEmptyString('password');
+        
+    
+        $validator
+        ->add(
+            'confirm_password',
+            'compareWith', [
+                'rule' => ['compareWith', 'password'],
+                'message' => 'Passwords not equal.'
+            ]
+            );
 
         $validator
             ->scalar('telefone')
@@ -78,10 +106,22 @@ class InstituicaoTable extends Table
             ->email('email')
             ->allowEmptyString('email');
 
-        $validator
-            ->integer('id_endereco')
-            ->allowEmptyString('id_endereco');
-
         return $validator;
+    }
+
+    /**
+     * Returns a rules checker object that will be used for validating
+     * application integrity.
+     *
+     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
+     * @return \Cake\ORM\RulesChecker
+     */
+    public function buildRules(RulesChecker $rules): RulesChecker
+    {
+        $rules->add($rules->isUnique(['username']), ['errorField' => 'username']);
+        $rules->add($rules->existsIn('roles_id', 'Roles'), ['errorField' => 'roles_id']);
+        $rules->add($rules->existsIn('id_endereco', 'Endereco'), ['errorField' => 'id_endereco']);
+
+        return $rules;
     }
 }

@@ -3,16 +3,16 @@ declare(strict_types=1);
 
 namespace App\Test\TestCase\Controller;
 
-use App\Controller\UsuariocomumController;
+use App\Controller\UsuarioComumController;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Controller\UsuariocomumController Test Case
+ * App\Controller\UsuarioComumController Test Case
  *
- * @uses \App\Controller\UsuariocomumController
+ * @uses \App\Controller\UsuarioComumController
  */
-class UsuariocomumControllerTest extends TestCase
+class UsuarioComumControllerTest extends TestCase
 {
     use IntegrationTestTrait;
 
@@ -22,14 +22,17 @@ class UsuariocomumControllerTest extends TestCase
      * @var array
      */
     protected $fixtures = [
-        'app.Usuariocomum',
+        'app.UsuarioComum',
+        'app.Classificacao',
+        'app.Feedback',
+        'app.Ocorrencia',
     ];
 
     /**
      * Test index method
      *
      * @return void
-     * @uses \App\Controller\UsuariocomumController::index()
+     * @uses \App\Controller\UsuarioComumController::index()
      */
     public function testIndex(): void
     {
@@ -40,7 +43,7 @@ class UsuariocomumControllerTest extends TestCase
      * Test view method
      *
      * @return void
-     * @uses \App\Controller\UsuariocomumController::view()
+     * @uses \App\Controller\UsuarioComumController::view()
      */
     public function testView(): void
     {
@@ -51,7 +54,7 @@ class UsuariocomumControllerTest extends TestCase
      * Test add method
      *
      * @return void
-     * @uses \App\Controller\UsuariocomumController::add()
+     * @uses \App\Controller\UsuarioComumController::add()
      */
     public function testAdd(): void
     {
@@ -62,7 +65,7 @@ class UsuariocomumControllerTest extends TestCase
      * Test edit method
      *
      * @return void
-     * @uses \App\Controller\UsuariocomumController::edit()
+     * @uses \App\Controller\UsuarioComumController::edit()
      */
     public function testEdit(): void
     {
@@ -73,7 +76,7 @@ class UsuariocomumControllerTest extends TestCase
      * Test delete method
      *
      * @return void
-     * @uses \App\Controller\UsuariocomumController::delete()
+     * @uses \App\Controller\UsuarioComumController::delete()
      */
     public function testDelete(): void
     {

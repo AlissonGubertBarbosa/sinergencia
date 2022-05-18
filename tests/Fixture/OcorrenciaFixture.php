@@ -26,11 +26,11 @@ class OcorrenciaFixture extends TestFixture
         $this->records = [
             [
                 'id_ocorrencia' => 1,
-                'descricao' => 'Lorem ipsum dolor sit amet, aliquet feugiat. Convallis morbi fringilla gravida, phasellus feugiat dapibus velit nunc, pulvinar eget sollicitudin venenatis cum nullam, vivamus ut a sed, mollitia lectus. Nulla vestibulum massa neque ut et, id hendrerit sit, feugiat in taciti enim proin nibh, tempor dignissim, rhoncus duis vestibulum nunc mattis convallis.',
+                'descricao' => 'Lorem ipsum dolor sit amet',
                 'status' => 'Lorem ipsum dolor sit amet',
-                'data_Criacao' => '2022-03-15 17:54:27',
-                'id_usuarioComum' => 1,
-                'id_enderecoOcorrencia' => 1,
+                'data_Criacao' => '2022-05-15 07:23:02',
+                'usuariocomum_id' => 1,
+                'endereco_id' => 1,
             ],
         ];
         parent::init();

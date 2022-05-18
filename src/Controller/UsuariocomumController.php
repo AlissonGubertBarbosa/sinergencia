@@ -4,12 +4,12 @@ declare(strict_types=1);
 namespace App\Controller;
 
 /**
- * Usuariocomum Controller
+ * UsuarioComum Controller
  *
- * @property \App\Model\Table\UsuariocomumTable $Usuariocomum
- * @method \App\Model\Entity\Usuariocomum[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
+ * @property \App\Model\Table\UsuarioComumTable $UsuarioComum
+ * @method \App\Model\Entity\UsuarioComum[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
-class UsuariocomumController extends AppController
+class UsuarioComumController extends AppController
 {
     /**
      * Index method
@@ -18,25 +18,25 @@ class UsuariocomumController extends AppController
      */
     public function index()
     {
-        $usuariocomum = $this->paginate($this->Usuariocomum);
+        $usuarioComum = $this->paginate($this->UsuarioComum);
 
-        $this->set(compact('usuariocomum'));
+        $this->set(compact('usuarioComum'));
     }
 
     /**
      * View method
      *
-     * @param string|null $id Usuariocomum id.
+     * @param string|null $id Usuario Comum id.
      * @return \Cake\Http\Response|null|void Renders view
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function view($id = null)
     {
-        $usuariocomum = $this->Usuariocomum->get($id, [
-            'contain' => [],
+        $usuarioComum = $this->UsuarioComum->get($id, [
+            'contain' => ['Classificacao', 'Feedback', 'Ocorrencia'],
         ]);
 
-        $this->set(compact('usuariocomum'));
+        $this->set(compact('usuarioComum'));
     }
 
     /**
@@ -46,58 +46,58 @@ class UsuariocomumController extends AppController
      */
     public function add()
     {
-        $usuariocomum = $this->Usuariocomum->newEmptyEntity();
+        $usuarioComum = $this->UsuarioComum->newEmptyEntity();
         if ($this->request->is('post')) {
-            $usuariocomum = $this->Usuariocomum->patchEntity($usuariocomum, $this->request->getData());
-            if ($this->Usuariocomum->save($usuariocomum)) {
-                $this->Flash->success(__('The usuariocomum has been saved.'));
+            $usuarioComum = $this->UsuarioComum->patchEntity($usuarioComum, $this->request->getData());
+            if ($this->UsuarioComum->save($usuarioComum)) {
+                $this->Flash->success(__('The usuario comum has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The usuariocomum could not be saved. Please, try again.'));
+            $this->Flash->error(__('The usuario comum could not be saved. Please, try again.'));
         }
-        $this->set(compact('usuariocomum'));
+        $this->set(compact('usuarioComum'));
     }
 
     /**
      * Edit method
      *
-     * @param string|null $id Usuariocomum id.
+     * @param string|null $id Usuario Comum id.
      * @return \Cake\Http\Response|null|void Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function edit($id = null)
     {
-        $usuariocomum = $this->Usuariocomum->get($id, [
+        $usuarioComum = $this->UsuarioComum->get($id, [
             'contain' => [],
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $usuariocomum = $this->Usuariocomum->patchEntity($usuariocomum, $this->request->getData());
-            if ($this->Usuariocomum->save($usuariocomum)) {
-                $this->Flash->success(__('The usuariocomum has been saved.'));
+            $usuarioComum = $this->UsuarioComum->patchEntity($usuarioComum, $this->request->getData());
+            if ($this->UsuarioComum->save($usuarioComum)) {
+                $this->Flash->success(__('The usuario comum has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The usuariocomum could not be saved. Please, try again.'));
+            $this->Flash->error(__('The usuario comum could not be saved. Please, try again.'));
         }
-        $this->set(compact('usuariocomum'));
+        $this->set(compact('usuarioComum'));
     }
 
     /**
      * Delete method
      *
-     * @param string|null $id Usuariocomum id.
+     * @param string|null $id Usuario Comum id.
      * @return \Cake\Http\Response|null|void Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
-        $usuariocomum = $this->Usuariocomum->get($id);
-        if ($this->Usuariocomum->delete($usuariocomum)) {
-            $this->Flash->success(__('The usuariocomum has been deleted.'));
+        $usuarioComum = $this->UsuarioComum->get($id);
+        if ($this->UsuarioComum->delete($usuarioComum)) {
+            $this->Flash->success(__('The usuario comum has been deleted.'));
         } else {
-            $this->Flash->error(__('The usuariocomum could not be deleted. Please, try again.'));
+            $this->Flash->error(__('The usuario comum could not be deleted. Please, try again.'));
         }
 
         return $this->redirect(['action' => 'index']);

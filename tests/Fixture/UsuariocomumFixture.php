@@ -6,9 +6,9 @@ namespace App\Test\Fixture;
 use Cake\TestSuite\Fixture\TestFixture;
 
 /**
- * UsuariocomumFixture
+ * UsuarioComumFixture
  */
-class UsuariocomumFixture extends TestFixture
+class UsuarioComumFixture extends TestFixture
 {
     /**
      * Table name
@@ -26,7 +26,7 @@ class UsuariocomumFixture extends TestFixture
         $this->records = [
             [
                 'id_usuarioComum' => 1,
-                'nomeUsuario' => 'Lorem ipsum dolor sit amet',
+                'nome' => 'Lorem ipsum dolor sit amet',
                 'telefone' => 'Lorem ipsum dolor sit amet',
                 'sexo' => 'Lorem ip',
             ],
