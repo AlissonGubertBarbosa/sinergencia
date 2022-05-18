@@ -17,6 +17,7 @@
             <fieldset>
                 <legend><?= __('Add Feedback') ?></legend>
                 <?php
+                    echo $this->Form->control('id');
                     echo $this->Form->control('devolutiva');
                     echo $this->Form->control('ocorrencia_id');
                     echo $this->Form->control('usuariocomum_id');

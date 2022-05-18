@@ -8,7 +8,7 @@ use Cake\ORM\Entity;
 /**
  * Feedback Entity
  *
- * @property int $id_feedback
+ * @property int $id
  * @property string $devolutiva
  * @property int $ocorrencia_id
  * @property int $usuariocomum_id

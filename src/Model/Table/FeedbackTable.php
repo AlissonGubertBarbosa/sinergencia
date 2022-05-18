@@ -72,8 +72,8 @@ class FeedbackTable extends Table
     public function validationDefault(Validator $validator): Validator
     {
         $validator
-            ->integer('id_feedback')
-            ->allowEmptyString('id_feedback', null, 'create');
+            ->integer('id')
+            ->allowEmptyString('id', null, 'create');
 
         $validator
             ->scalar('devolutiva')

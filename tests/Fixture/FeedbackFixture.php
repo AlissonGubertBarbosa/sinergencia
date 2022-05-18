@@ -19,7 +19,7 @@ class FeedbackFixture extends TestFixture
     {
         $this->records = [
             [
-                'id_feedback' => 1,
+                'id' => 1,
                 'devolutiva' => 'Lorem ipsum dolor sit amet',
                 'ocorrencia_id' => 1,
                 'usuariocomum_id' => 1,

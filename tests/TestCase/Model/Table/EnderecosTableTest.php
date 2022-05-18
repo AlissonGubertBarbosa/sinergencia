@@ -3,20 +3,20 @@ declare(strict_types=1);
 
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\EnderecoTable;
+use App\Model\Table\EnderecosTable;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\EnderecoTable Test Case
+ * App\Model\Table\EnderecosTable Test Case
  */
-class EnderecoTableTest extends TestCase
+class EnderecosTableTest extends TestCase
 {
     /**
      * Test subject
      *
-     * @var \App\Model\Table\EnderecoTable
+     * @var \App\Model\Table\EnderecosTable
      */
-    protected $Endereco;
+    protected $Enderecos;
 
     /**
      * Fixtures
@@ -24,10 +24,9 @@ class EnderecoTableTest extends TestCase
      * @var array
      */
     protected $fixtures = [
-        'app.Endereco',
-        'app.Instituicao',
-        'app.Moderador',
+        'app.Enderecos',
         'app.Ocorrencia',
+        'app.Users',
     ];
 
     /**
@@ -38,8 +37,8 @@ class EnderecoTableTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $config = $this->getTableLocator()->exists('Endereco') ? [] : ['className' => EnderecoTable::class];
-        $this->Endereco = $this->getTableLocator()->get('Endereco', $config);
+        $config = $this->getTableLocator()->exists('Enderecos') ? [] : ['className' => EnderecosTable::class];
+        $this->Enderecos = $this->getTableLocator()->get('Enderecos', $config);
     }
 
     /**
@@ -49,7 +48,7 @@ class EnderecoTableTest extends TestCase
      */
     public function tearDown(): void
     {
-        unset($this->Endereco);
+        unset($this->Enderecos);
 
         parent::tearDown();
     }
@@ -58,7 +57,7 @@ class EnderecoTableTest extends TestCase
      * Test validationDefault method
      *
      * @return void
-     * @uses \App\Model\Table\EnderecoTable::validationDefault()
+     * @uses \App\Model\Table\EnderecosTable::validationDefault()
      */
     public function testValidationDefault(): void
     {

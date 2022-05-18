@@ -6,9 +6,9 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Ocorrencium Entity
+ * Ocorrencia Entity
  *
- * @property int $id_ocorrencia
+ * @property int $id
  * @property string $descricao
  * @property string $status
  * @property \Cake\I18n\FrozenTime|null $data_Criacao
@@ -17,8 +17,9 @@ use Cake\ORM\Entity;
  *
  * @property \App\Model\Entity\Usuariocomum $usuariocomum
  * @property \App\Model\Entity\Endereco $endereco
+ * @property \App\Model\Entity\Feedback[] $feedback
  */
-class Ocorrencium extends Entity
+class Ocorrencia extends Entity
 {
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
@@ -37,5 +38,6 @@ class Ocorrencium extends Entity
         'endereco_id' => true,
         'usuariocomum' => true,
         'endereco' => true,
+        'feedback' => true,
     ];
 }

@@ -23,8 +23,8 @@
                     <td><?= h($feedback->devolutiva) ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Id Feedback') ?></th>
-                    <td><?= $this->Number->format($feedback->id_feedback) ?></td>
+                    <th><?= __('Id') ?></th>
+                    <td><?= $this->Number->format($feedback->id) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Ocorrencia Id') ?></th>

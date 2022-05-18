@@ -3,20 +3,20 @@ declare(strict_types=1);
 
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\EnderecoTable;
+use App\Model\Table\UsuariocomumsTable;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\EnderecoTable Test Case
+ * App\Model\Table\UsuariocomumsTable Test Case
  */
-class EnderecoTableTest extends TestCase
+class UsuariocomumsTableTest extends TestCase
 {
     /**
      * Test subject
      *
-     * @var \App\Model\Table\EnderecoTable
+     * @var \App\Model\Table\UsuariocomumsTable
      */
-    protected $Endereco;
+    protected $Usuariocomums;
 
     /**
      * Fixtures
@@ -24,10 +24,10 @@ class EnderecoTableTest extends TestCase
      * @var array
      */
     protected $fixtures = [
-        'app.Endereco',
-        'app.Instituicao',
-        'app.Moderador',
-        'app.Ocorrencia',
+        'app.Usuariocomums',
+        'app.Classificacoes',
+        'app.Feedback',
+        'app.Ocorrencias',
     ];
 
     /**
@@ -38,8 +38,8 @@ class EnderecoTableTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $config = $this->getTableLocator()->exists('Endereco') ? [] : ['className' => EnderecoTable::class];
-        $this->Endereco = $this->getTableLocator()->get('Endereco', $config);
+        $config = $this->getTableLocator()->exists('Usuariocomums') ? [] : ['className' => UsuariocomumsTable::class];
+        $this->Usuariocomums = $this->getTableLocator()->get('Usuariocomums', $config);
     }
 
     /**
@@ -49,7 +49,7 @@ class EnderecoTableTest extends TestCase
      */
     public function tearDown(): void
     {
-        unset($this->Endereco);
+        unset($this->Usuariocomums);
 
         parent::tearDown();
     }
@@ -58,7 +58,7 @@ class EnderecoTableTest extends TestCase
      * Test validationDefault method
      *
      * @return void
-     * @uses \App\Model\Table\EnderecoTable::validationDefault()
+     * @uses \App\Model\Table\UsuariocomumsTable::validationDefault()
      */
     public function testValidationDefault(): void
     {

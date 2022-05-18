@@ -3,16 +3,16 @@ declare(strict_types=1);
 
 namespace App\Test\TestCase\Controller;
 
-use App\Controller\EnderecoController;
+use App\Controller\UsersController;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Controller\EnderecoController Test Case
+ * App\Controller\UsersController Test Case
  *
- * @uses \App\Controller\EnderecoController
+ * @uses \App\Controller\UsersController
  */
-class EnderecoControllerTest extends TestCase
+class UsersControllerTest extends TestCase
 {
     use IntegrationTestTrait;
 
@@ -22,17 +22,16 @@ class EnderecoControllerTest extends TestCase
      * @var array
      */
     protected $fixtures = [
-        'app.Endereco',
-        'app.Instituicao',
-        'app.Moderador',
-        'app.Ocorrencia',
+        'app.Users',
+        'app.Roles',
+        'app.Enderecos',
     ];
 
     /**
      * Test index method
      *
      * @return void
-     * @uses \App\Controller\EnderecoController::index()
+     * @uses \App\Controller\UsersController::index()
      */
     public function testIndex(): void
     {
@@ -43,7 +42,7 @@ class EnderecoControllerTest extends TestCase
      * Test view method
      *
      * @return void
-     * @uses \App\Controller\EnderecoController::view()
+     * @uses \App\Controller\UsersController::view()
      */
     public function testView(): void
     {
@@ -54,7 +53,7 @@ class EnderecoControllerTest extends TestCase
      * Test add method
      *
      * @return void
-     * @uses \App\Controller\EnderecoController::add()
+     * @uses \App\Controller\UsersController::add()
      */
     public function testAdd(): void
     {
@@ -65,7 +64,7 @@ class EnderecoControllerTest extends TestCase
      * Test edit method
      *
      * @return void
-     * @uses \App\Controller\EnderecoController::edit()
+     * @uses \App\Controller\UsersController::edit()
      */
     public function testEdit(): void
     {
@@ -76,7 +75,7 @@ class EnderecoControllerTest extends TestCase
      * Test delete method
      *
      * @return void
-     * @uses \App\Controller\EnderecoController::delete()
+     * @uses \App\Controller\UsersController::delete()
      */
     public function testDelete(): void
     {

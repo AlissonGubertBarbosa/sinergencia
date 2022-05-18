@@ -6,16 +6,10 @@ namespace App\Test\Fixture;
 use Cake\TestSuite\Fixture\TestFixture;
 
 /**
- * EnderecoFixture
+ * EnderecosFixture
  */
-class EnderecoFixture extends TestFixture
+class EnderecosFixture extends TestFixture
 {
-    /**
-     * Table name
-     *
-     * @var string
-     */
-    public $table = 'endereco';
     /**
      * Init method
      *

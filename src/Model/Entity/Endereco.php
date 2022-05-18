@@ -8,13 +8,16 @@ use Cake\ORM\Entity;
 /**
  * Endereco Entity
  *
- * @property int $id_endereco
+ * @property int $id
  * @property string $logradouro
  * @property string|null $numero
  * @property string $bairro
  * @property string $complemento
  * @property string $cidade
  * @property string $estado
+ *
+ * @property \App\Model\Entity\Ocorrencium[] $ocorrencia
+ * @property \App\Model\Entity\User[] $users
  */
 class Endereco extends Entity
 {
@@ -34,5 +37,7 @@ class Endereco extends Entity
         'complemento' => true,
         'cidade' => true,
         'estado' => true,
+        'ocorrencia' => true,
+        'users' => true,
     ];
 }

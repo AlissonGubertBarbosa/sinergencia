@@ -11,7 +11,7 @@
         <table>
             <thead>
                 <tr>
-                    <th><?= $this->Paginator->sort('id_feedback') ?></th>
+                    <th><?= $this->Paginator->sort('id') ?></th>
                     <th><?= $this->Paginator->sort('devolutiva') ?></th>
                     <th><?= $this->Paginator->sort('ocorrencia_id') ?></th>
                     <th><?= $this->Paginator->sort('usuariocomum_id') ?></th>
@@ -22,7 +22,7 @@
             <tbody>
                 <?php foreach ($feedback as $feedback): ?>
                 <tr>
-                    <td><?= $this->Number->format($feedback->id_feedback) ?></td>
+                    <td><?= $this->Number->format($feedback->id) ?></td>
                     <td><?= h($feedback->devolutiva) ?></td>
                     <td><?= $this->Number->format($feedback->ocorrencia_id) ?></td>
                     <td><?= $this->Number->format($feedback->usuariocomum_id) ?></td>

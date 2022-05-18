@@ -3,16 +3,16 @@ declare(strict_types=1);
 
 namespace App\Test\TestCase\Controller;
 
-use App\Controller\EnderecoController;
+use App\Controller\ClassificacoesController;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Controller\EnderecoController Test Case
+ * App\Controller\ClassificacoesController Test Case
  *
- * @uses \App\Controller\EnderecoController
+ * @uses \App\Controller\ClassificacoesController
  */
-class EnderecoControllerTest extends TestCase
+class ClassificacoesControllerTest extends TestCase
 {
     use IntegrationTestTrait;
 
@@ -22,17 +22,16 @@ class EnderecoControllerTest extends TestCase
      * @var array
      */
     protected $fixtures = [
-        'app.Endereco',
-        'app.Instituicao',
-        'app.Moderador',
-        'app.Ocorrencia',
+        'app.Classificacoes',
+        'app.Feedback',
+        'app.Usuariocomums',
     ];
 
     /**
      * Test index method
      *
      * @return void
-     * @uses \App\Controller\EnderecoController::index()
+     * @uses \App\Controller\ClassificacoesController::index()
      */
     public function testIndex(): void
     {
@@ -43,7 +42,7 @@ class EnderecoControllerTest extends TestCase
      * Test view method
      *
      * @return void
-     * @uses \App\Controller\EnderecoController::view()
+     * @uses \App\Controller\ClassificacoesController::view()
      */
     public function testView(): void
     {
@@ -54,7 +53,7 @@ class EnderecoControllerTest extends TestCase
      * Test add method
      *
      * @return void
-     * @uses \App\Controller\EnderecoController::add()
+     * @uses \App\Controller\ClassificacoesController::add()
      */
     public function testAdd(): void
     {
@@ -65,7 +64,7 @@ class EnderecoControllerTest extends TestCase
      * Test edit method
      *
      * @return void
-     * @uses \App\Controller\EnderecoController::edit()
+     * @uses \App\Controller\ClassificacoesController::edit()
      */
     public function testEdit(): void
     {
@@ -76,7 +75,7 @@ class EnderecoControllerTest extends TestCase
      * Test delete method
      *
      * @return void
-     * @uses \App\Controller\EnderecoController::delete()
+     * @uses \App\Controller\ClassificacoesController::delete()
      */
     public function testDelete(): void
     {

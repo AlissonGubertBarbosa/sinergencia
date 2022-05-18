@@ -6,14 +6,17 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Classificacao Entity
+ * Classificaco Entity
  *
  * @property int $id
  * @property int $nota
  * @property int $feedback_id
  * @property int $usuariocomum_id
+ *
+ * @property \App\Model\Entity\Feedback $feedback
+ * @property \App\Model\Entity\Usuariocomum $usuariocomum
  */
-class Classificacao extends Entity
+class Classificaco extends Entity
 {
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
@@ -28,5 +31,7 @@ class Classificacao extends Entity
         'nota' => true,
         'feedback_id' => true,
         'usuariocomum_id' => true,
+        'feedback' => true,
+        'usuariocomum' => true,
     ];
 }
