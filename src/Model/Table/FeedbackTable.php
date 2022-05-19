@@ -13,8 +13,6 @@ use Cake\Validation\Validator;
  *
  * @property \App\Model\Table\OcorrenciasTable&\Cake\ORM\Association\BelongsTo $Ocorrencias
  * @property \App\Model\Table\UsuariocomumsTable&\Cake\ORM\Association\BelongsTo $Usuariocomums
- * @property \App\Model\Table\InstituicaosTable&\Cake\ORM\Association\BelongsTo $Instituicaos
- * @property \App\Model\Table\ClassificacaoTable&\Cake\ORM\Association\HasMany $Classificacao
  *
  * @method \App\Model\Entity\Feedback newEmptyEntity()
  * @method \App\Model\Entity\Feedback newEntity(array $data, array $options = [])
@@ -54,11 +52,11 @@ class FeedbackTable extends Table
             'foreignKey' => 'usuariocomum_id',
             'joinType' => 'INNER',
         ]);
-        $this->belongsTo('Instituicaos', [
-            'foreignKey' => 'instituicao_id',
+        $this->belongsTo('Users', [
+            'foreignKey' => 'users_id',
             'joinType' => 'INNER',
         ]);
-        $this->hasMany('Classificacao', [
+        $this->hasMany('Classificacoes', [
             'foreignKey' => 'feedback_id',
         ]);
     }
@@ -95,7 +93,7 @@ class FeedbackTable extends Table
     {
         $rules->add($rules->existsIn('ocorrencia_id', 'Ocorrencias'), ['errorField' => 'ocorrencia_id']);
         $rules->add($rules->existsIn('usuariocomum_id', 'Usuariocomums'), ['errorField' => 'usuariocomum_id']);
-        $rules->add($rules->existsIn('instituicao_id', 'Instituicaos'), ['errorField' => 'instituicao_id']);
+        $rules->add($rules->existsIn('users_id', 'Users'), ['errorField' => 'users_id']);
 
         return $rules;
     }

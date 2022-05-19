@@ -12,7 +12,7 @@ use Cake\ORM\Entity;
  * @property string $devolutiva
  * @property int $ocorrencia_id
  * @property int $usuariocomum_id
- * @property int $instituicao_id
+ * @property int $users_id
  *
  * @property \App\Model\Entity\Ocorrencia $ocorrencia
  * @property \App\Model\Entity\Usuariocomum $usuariocomum
@@ -34,7 +34,7 @@ class Feedback extends Entity
         'devolutiva' => true,
         'ocorrencia_id' => true,
         'usuariocomum_id' => true,
-        'instituicao_id' => true,
+        'users_id' => true,
         'ocorrencia' => true,
         'usuariocomum' => true,
         'instituicao' => true,

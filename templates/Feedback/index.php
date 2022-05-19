@@ -15,7 +15,7 @@
                     <th><?= $this->Paginator->sort('devolutiva') ?></th>
                     <th><?= $this->Paginator->sort('ocorrencia_id') ?></th>
                     <th><?= $this->Paginator->sort('usuariocomum_id') ?></th>
-                    <th><?= $this->Paginator->sort('instituicao_id') ?></th>
+                    <th><?= $this->Paginator->sort('users_id') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -24,9 +24,9 @@
                 <tr>
                     <td><?= $this->Number->format($feedback->id) ?></td>
                     <td><?= h($feedback->devolutiva) ?></td>
-                    <td><?= $this->Number->format($feedback->ocorrencia_id) ?></td>
-                    <td><?= $this->Number->format($feedback->usuariocomum_id) ?></td>
-                    <td><?= $this->Number->format($feedback->instituicao_id) ?></td>
+                    <td><?= $feedback->has('ocorrencia') ? $this->Html->link($feedback->ocorrencia->id, ['controller' => 'Ocorrencias', 'action' => 'view', $feedback->ocorrencia->id]) : '' ?></td>
+                    <td><?= $feedback->has('usuariocomum') ? $this->Html->link($feedback->usuariocomum->id, ['controller' => 'Usuariocomums', 'action' => 'view', $feedback->usuariocomum->id]) : '' ?></td>
+                    <td><?= $this->Number->format($feedback->users_id) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $feedback->id_feedback]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $feedback->id_feedback]) ?>

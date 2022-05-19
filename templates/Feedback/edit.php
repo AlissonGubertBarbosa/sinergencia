@@ -2,6 +2,8 @@
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Feedback $feedback
+ * @var string[]|\Cake\Collection\CollectionInterface $ocorrencias
+ * @var string[]|\Cake\Collection\CollectionInterface $usuariocomums
  */
 ?>
 <div class="row">
@@ -24,9 +26,9 @@
                 <?php
                     echo $this->Form->control('id');
                     echo $this->Form->control('devolutiva');
-                    echo $this->Form->control('ocorrencia_id');
-                    echo $this->Form->control('usuariocomum_id');
-                    echo $this->Form->control('instituicao_id');
+                    echo $this->Form->control('ocorrencia_id', ['options' => $ocorrencias]);
+                    echo $this->Form->control('usuariocomum_id', ['options' => $usuariocomums]);
+                    echo $this->Form->control('users_id');
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>

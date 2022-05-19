@@ -23,51 +23,22 @@
                     <td><?= h($feedback->devolutiva) ?></td>
                 </tr>
                 <tr>
+                    <th><?= __('Ocorrencia') ?></th>
+                    <td><?= $feedback->has('ocorrencia') ? $this->Html->link($feedback->ocorrencia->id, ['controller' => 'Ocorrencias', 'action' => 'view', $feedback->ocorrencia->id]) : '' ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Usuariocomum') ?></th>
+                    <td><?= $feedback->has('usuariocomum') ? $this->Html->link($feedback->usuariocomum->id, ['controller' => 'Usuariocomums', 'action' => 'view', $feedback->usuariocomum->id]) : '' ?></td>
+                </tr>
+                <tr>
                     <th><?= __('Id') ?></th>
                     <td><?= $this->Number->format($feedback->id) ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Ocorrencia Id') ?></th>
-                    <td><?= $this->Number->format($feedback->ocorrencia_id) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Usuariocomum Id') ?></th>
-                    <td><?= $this->Number->format($feedback->usuariocomum_id) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Instituicao Id') ?></th>
-                    <td><?= $this->Number->format($feedback->instituicao_id) ?></td>
+                    <th><?= __('Users Id') ?></th>
+                    <td><?= $this->Number->format($feedback->users_id) ?></td>
                 </tr>
             </table>
-            <div class="related">
-                <h4><?= __('Related Classificacao') ?></h4>
-                <?php if (!empty($feedback->classificacao)) : ?>
-                <div class="table-responsive">
-                    <table>
-                        <tr>
-                            <th><?= __('Id') ?></th>
-                            <th><?= __('Nota') ?></th>
-                            <th><?= __('Feedback Id') ?></th>
-                            <th><?= __('Usuariocomum Id') ?></th>
-                            <th class="actions"><?= __('Actions') ?></th>
-                        </tr>
-                        <?php foreach ($feedback->classificacao as $classificacao) : ?>
-                        <tr>
-                            <td><?= h($classificacao->id) ?></td>
-                            <td><?= h($classificacao->nota) ?></td>
-                            <td><?= h($classificacao->feedback_id) ?></td>
-                            <td><?= h($classificacao->usuariocomum_id) ?></td>
-                            <td class="actions">
-                                <?= $this->Html->link(__('View'), ['controller' => 'Classificacao', 'action' => 'view', $classificacao->id_classificacao]) ?>
-                                <?= $this->Html->link(__('Edit'), ['controller' => 'Classificacao', 'action' => 'edit', $classificacao->id_classificacao]) ?>
-                                <?= $this->Form->postLink(__('Delete'), ['controller' => 'Classificacao', 'action' => 'delete', $classificacao->id_classificacao], ['confirm' => __('Are you sure you want to delete # {0}?', $classificacao->id_classificacao)]) ?>
-                            </td>
-                        </tr>
-                        <?php endforeach; ?>
-                    </table>
-                </div>
-                <?php endif; ?>
-            </div>
         </div>
     </div>
 </div>

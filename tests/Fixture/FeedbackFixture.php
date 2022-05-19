@@ -23,7 +23,7 @@ class FeedbackFixture extends TestFixture
                 'devolutiva' => 'Lorem ipsum dolor sit amet',
                 'ocorrencia_id' => 1,
                 'usuariocomum_id' => 1,
-                'instituicao_id' => 1,
+                'users_id' => 1,
             ],
         ];
         parent::init();
