@@ -242,6 +242,10 @@ return [
             'tls' => false,
             'url' => env('EMAIL_TRANSPORT_DEFAULT_URL', null),
         ],
+
+        'gmail' => [
+            
+        ]
     ],
 
     /*
