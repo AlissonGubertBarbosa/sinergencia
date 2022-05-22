@@ -9,8 +9,17 @@ namespace App\Controller;
  * @property \App\Model\Table\UsersTable $Users
  * @method \App\Model\Entity\User[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
+use Cake\Event\Event;
+use Cake\Event\EventInterface;
+
 class UsersController extends AppController
 {
+
+    public function beforeFilter(EventInterface $event)
+    {
+        parent::beforeFilter($event);
+        $this->Auth->allow('add');
+    }
     /**
      * Index method
      *
@@ -108,5 +117,20 @@ class UsersController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+
+    public function login(){
+        if($this->request->is('post')){
+            $user = $this->Auth->identify();
+            if($user){
+                $this->Auth->setUser($user);
+                return $this->redirect($this->Auth->redirectUrl());
+            }
+            $this->Flash->error(_('Invalido o username ou password, tente novamente'));
+        }
+    }
+
+    public function logout(){
+        return $this->redirect($this->Auth->Logout());
     }
 }

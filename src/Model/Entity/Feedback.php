@@ -16,8 +16,8 @@ use Cake\ORM\Entity;
  *
  * @property \App\Model\Entity\Ocorrencia $ocorrencia
  * @property \App\Model\Entity\Usuariocomum $usuariocomum
- * @property \App\Model\Entity\Instituicao $instituicao
- * @property \App\Model\Entity\Classificacao[] $classificacao
+ * @property \App\Model\Entity\User $user
+ * @property \App\Model\Entity\Classificaco[] $classificacoes
  */
 class Feedback extends Entity
 {
@@ -37,7 +37,7 @@ class Feedback extends Entity
         'users_id' => true,
         'ocorrencia' => true,
         'usuariocomum' => true,
-        'instituicao' => true,
-        'classificacao' => true,
+        'user' => true,
+        'classificacoes' => true,
     ];
 }

@@ -9,23 +9,17 @@
     <aside class="column">
         <div class="side-nav">
             <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Html->link(__('List Users'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
+            <?= $this->Html->link(__('New User'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
     <div class="column-responsive column-80">
         <div class="users form content">
-            <?= $this->Form->create($user) ?>
+            <?= $this->Form->create() ?>
             <fieldset>
-                <legend><?= __('Add User') ?></legend>
+                <legend><?= __('Login') ?></legend>
                 <?php
-                    echo $this->Form->control('nome');
                     echo $this->Form->control('username');
                     echo $this->Form->control('password');
-                    echo $this->Form->control('confirm_password', ['type' => 'password']);
-                    echo $this->Form->control('telefone');
-                    echo $this->Form->control('email');
-                    echo $this->Form->control('roles_id', ['options' => $roles]);
-                    echo $this->Form->control('endereco_id');
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>

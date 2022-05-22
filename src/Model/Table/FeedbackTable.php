@@ -13,6 +13,8 @@ use Cake\Validation\Validator;
  *
  * @property \App\Model\Table\OcorrenciasTable&\Cake\ORM\Association\BelongsTo $Ocorrencias
  * @property \App\Model\Table\UsuariocomumsTable&\Cake\ORM\Association\BelongsTo $Usuariocomums
+ * @property \App\Model\Table\UsersTable&\Cake\ORM\Association\BelongsTo $Users
+ * @property \App\Model\Table\ClassificacoesTable&\Cake\ORM\Association\HasMany $Classificacoes
  *
  * @method \App\Model\Entity\Feedback newEmptyEntity()
  * @method \App\Model\Entity\Feedback newEntity(array $data, array $options = [])
@@ -41,8 +43,8 @@ class FeedbackTable extends Table
         parent::initialize($config);
 
         $this->setTable('feedback');
-        $this->setDisplayField('id_feedback');
-        $this->setPrimaryKey('id_feedback');
+        $this->setDisplayField('id');
+        $this->setPrimaryKey('id');
 
         $this->belongsTo('Ocorrencias', [
             'foreignKey' => 'ocorrencia_id',

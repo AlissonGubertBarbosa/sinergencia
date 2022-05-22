@@ -19,7 +19,7 @@ class FeedbackController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Ocorrencias', 'Usuariocomums', 'Instituicaos'],
+            'contain' => ['Ocorrencias', 'Usuariocomums', 'Users'],
         ];
         $feedback = $this->paginate($this->Feedback);
 
@@ -36,7 +36,7 @@ class FeedbackController extends AppController
     public function view($id = null)
     {
         $feedback = $this->Feedback->get($id, [
-            'contain' => ['Ocorrencias', 'Usuariocomums', 'Instituicaos', 'Classificacao'],
+            'contain' => ['Ocorrencias', 'Usuariocomums', 'Users', 'Classificacoes'],
         ]);
 
         $this->set(compact('feedback'));
@@ -61,8 +61,8 @@ class FeedbackController extends AppController
         }
         $ocorrencias = $this->Feedback->Ocorrencias->find('list', ['limit' => 200])->all();
         $usuariocomums = $this->Feedback->Usuariocomums->find('list', ['limit' => 200])->all();
-        $instituicaos = $this->Feedback->Instituicaos->find('list', ['limit' => 200])->all();
-        $this->set(compact('feedback', 'ocorrencias', 'usuariocomums', 'instituicaos'));
+        $users = $this->Feedback->Users->find('list', ['limit' => 200])->all();
+        $this->set(compact('feedback', 'ocorrencias', 'usuariocomums', 'users'));
     }
 
     /**
@@ -88,8 +88,8 @@ class FeedbackController extends AppController
         }
         $ocorrencias = $this->Feedback->Ocorrencias->find('list', ['limit' => 200])->all();
         $usuariocomums = $this->Feedback->Usuariocomums->find('list', ['limit' => 200])->all();
-        $instituicaos = $this->Feedback->Instituicaos->find('list', ['limit' => 200])->all();
-        $this->set(compact('feedback', 'ocorrencias', 'usuariocomums', 'instituicaos'));
+        $users = $this->Feedback->Users->find('list', ['limit' => 200])->all();
+        $this->set(compact('feedback', 'ocorrencias', 'usuariocomums', 'users'));
     }
 
     /**

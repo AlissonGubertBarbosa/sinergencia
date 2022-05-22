@@ -27,6 +27,10 @@
                     <td><?= h($user->username) ?></td>
                 </tr>
                 <tr>
+                    <th><?= __('Password') ?></th>
+                    <td><?= h($user->password) ?></td>
+                </tr>
+                <tr>
                     <th><?= __('Telefone') ?></th>
                     <td><?= h($user->telefone) ?></td>
                 </tr>
@@ -39,11 +43,7 @@
                     <td><?= $user->has('role') ? $this->Html->link($user->role->role, ['controller' => 'Roles', 'action' => 'view', $user->role->id]) : '' ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Id') ?></th>
-                    <td><?= $this->Number->format($user->id) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Endereco Id') ?></th>
+                    <th><?= __('Endereco') ?></th>
                     <td><?= $this->Number->format($user->endereco_id) ?></td>
                 </tr>
                 <tr>

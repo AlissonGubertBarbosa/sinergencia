@@ -4,6 +4,7 @@
  * @var \App\Model\Entity\Feedback $feedback
  * @var \Cake\Collection\CollectionInterface|string[] $ocorrencias
  * @var \Cake\Collection\CollectionInterface|string[] $usuariocomums
+ * @var \Cake\Collection\CollectionInterface|string[] $users
  */
 ?>
 <div class="row">
@@ -19,11 +20,10 @@
             <fieldset>
                 <legend><?= __('Add Feedback') ?></legend>
                 <?php
-                    echo $this->Form->control('id');
                     echo $this->Form->control('devolutiva');
                     echo $this->Form->control('ocorrencia_id', ['options' => $ocorrencias]);
                     echo $this->Form->control('usuariocomum_id', ['options' => $usuariocomums]);
-                    echo $this->Form->control('users_id');
+                    echo $this->Form->control('users_id', ['options' => $users]);
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>

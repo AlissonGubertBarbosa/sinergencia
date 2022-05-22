@@ -43,6 +43,9 @@ $cakeDescription = 'Sinegencia';
         <div class="top-nav-links">
             <a target="_blank" rel="noopener" href="https://book.cakephp.org/4/">Documentation</a>
             <a target="_blank" rel="noopener" href="https://www.gov.br/mme/pt-br">Site Governamental</a>
+            <?php if($username): ?>
+                <?= $this->html->link(_('Logout'), ['controller' => 'Users', 'action' => 'logout']) ?>
+            <?php endif; ?>
         </div>
     </nav>
     <main class="main">

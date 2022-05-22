@@ -25,8 +25,8 @@ class FeedbackControllerTest extends TestCase
         'app.Feedback',
         'app.Ocorrencias',
         'app.Usuariocomums',
-        'app.Instituicaos',
-        'app.Classificacao',
+        'app.Users',
+        'app.Classificacoes',
     ];
 
     /**
