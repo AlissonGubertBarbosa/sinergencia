@@ -19,7 +19,7 @@ class OcorrenciasController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Usuariocomum', 'Enderecos'],
+            'contain' => ['Usuariocomums', 'Enderecos'],
         ];
         $ocorrencias = $this->paginate($this->Ocorrencias);
 
@@ -36,7 +36,7 @@ class OcorrenciasController extends AppController
     public function view($id = null)
     {
         $ocorrencia = $this->Ocorrencias->get($id, [
-            'contain' => ['Usuariocomum', 'Enderecos', 'Feedback'],
+            'contain' => ['Usuariocomums', 'Enderecos', 'Feedback'],
         ]);
 
         $this->set(compact('ocorrencia'));
@@ -59,9 +59,9 @@ class OcorrenciasController extends AppController
             }
             $this->Flash->error(__('The ocorrencia could not be saved. Please, try again.'));
         }
-        $usuariocomum = $this->Ocorrencias->Usuariocomum->find('list', ['limit' => 200])->all();
+        $usuariocomums = $this->Ocorrencias->Usuariocomums->find('list', ['limit' => 200])->all();
         $enderecos = $this->Ocorrencias->Enderecos->find('list', ['limit' => 200])->all();
-        $this->set(compact('ocorrencia', 'usuariocomum', 'enderecos'));
+        $this->set(compact('ocorrencia', 'usuariocomums', 'enderecos'));
     }
 
     /**
@@ -85,9 +85,9 @@ class OcorrenciasController extends AppController
             }
             $this->Flash->error(__('The ocorrencia could not be saved. Please, try again.'));
         }
-        $usuariocomum = $this->Ocorrencias->Usuariocomum->find('list', ['limit' => 200])->all();
+        $usuariocomums = $this->Ocorrencias->Usuariocomums->find('list', ['limit' => 200])->all();
         $enderecos = $this->Ocorrencias->Enderecos->find('list', ['limit' => 200])->all();
-        $this->set(compact('ocorrencia', 'usuariocomum', 'enderecos'));
+        $this->set(compact('ocorrencia', 'usuariocomums', 'enderecos'));
     }
 
     /**

@@ -49,4 +49,5 @@
         </ul>
         <p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>
     </div>
+    <a href="<?= $this->Url->build('/') ?>">Voltar a Página inicial</a>
 </div>

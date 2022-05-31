@@ -45,7 +45,7 @@ class OcorrenciasTable extends Table
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
 
-        $this->belongsTo('Usuariocomum', [
+        $this->belongsTo('Usuariocomums', [
             'foreignKey' => 'usuariocomum_id',
             'joinType' => 'INNER',
         ]);

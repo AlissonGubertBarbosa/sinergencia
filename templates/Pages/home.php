@@ -103,6 +103,12 @@ $cakeDescription = 'Home';
                     <div class="column">
                         <h4>Environment</h4>
                         <ul>
+                        <li><?= $this->html->link(_('Ocorrencias'), ['controller' => 'Ocorrencias', 'action' => 'index']) ?></li>
+                        <li><?= $this->html->link(_('Administradores'), ['controller' => 'Users', 'action' => 'index']) ?></li>
+                        <li><?= $this->html->link(_('Feedback'), ['controller' => 'Admin', 'action' => 'Feedback']) ?></li>
+                        <li><?= $this->html->link(_('Classificações'), ['controller' => 'Classificacoes', 'action' => 'index']) ?></li>
+                        <li> <?= $this->html->link(_('Usuarios'), ['controller' => 'Usuariocomums', 'action' => 'index']) ?></li>
+                        <li><?= $this->html->link(_('Endereco'), ['controller' => 'Enderecos', 'action' => 'index']) ?></li>
                         <?php if (version_compare(PHP_VERSION, '7.2.0', '>=')) : ?>
                             <li class="bullet success">Your version of PHP is 7.2.0 or higher (detected <?= PHP_VERSION ?>).</li>
                         <?php else : ?>
