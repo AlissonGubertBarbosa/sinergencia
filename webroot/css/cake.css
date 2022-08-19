@@ -1,4 +1,3 @@
-/* Miligram overrides */
 body {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: 400;
@@ -33,7 +32,7 @@ a:active  {
 .top-nav-links a,
 th a,
 .actions a {
-    color: #606c76;
+    color: #3835e6;
 }
 
 .side-nav a:hover,
@@ -53,11 +52,11 @@ th a,
 
 /* Main */
 body {
-    background: #f5f7fa;
+    background: #6695dd;
 }
 .content {
     padding: 2rem;
-    background: #ffffff;
+    background: #1a131373;
     border-radius: 0.4rem;
     /* Thanks Stripe */
     box-shadow: 0 7px 14px 0 rgba(60, 66, 87, 0.1),
@@ -71,14 +70,38 @@ th {
     white-space: nowrap;
 }
 
+/* Nav bar Home*/
+.top-nav-home {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.top-nav-title-home a {
+    font-size: 2.4rem;
+    color: #01010a;
+}
+.top-nav-title-home span {
+    color: #414041;
+}
+.top-nav-links-home a {
+    margin: 0 0.5rem;
+}
+.top-nav-title-home a,
+.top-nav-links-home a {
+    font-weight: bold;
+}
+
+.side-nav-item-home {
+    display: block;
+    padding: 0.5rem 0;
+}
+
 /* Nav bar */
 .top-nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
     max-width: 112rem;
-    padding: 2rem;
-    margin: 0 auto 2rem;
 }
 .top-nav-title a {
     font-size: 2.4rem;

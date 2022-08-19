@@ -35,19 +35,20 @@ $cakeDescription = 'Sinegencia';
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
 </head>
-<body>
-    <nav class="top-nav">
-        <div class="top-nav-title">
-            <a href="<?= $this->Url->build('/') ?>">Sinergencia</a>
-        </div>
-        <div class="top-nav-links">
-            <a target="_blank" rel="noopener" href="https://book.cakephp.org/4/">Documentation</a>
-            <a target="_blank" rel="noopener" href="https://www.gov.br/mme/pt-br">Site Governamental</a>
-            <?php if($username): ?>
-                <?= $this->html->link(_('Logout'), ['controller' => 'Users', 'action' => 'logout']) ?>
-            <?php endif; ?>
-        </div>
-    </nav>
+<body>  
+        <nav class="top-nav">
+            <div class="top-nav-title">
+                <a href="<?= $this->Url->build('/') ?>">Sinergencia</a>
+            </div>
+            <div class="top-nav-links">
+                <a target="_blank" rel="noopener" href="https://book.cakephp.org/4/">Documentation</a>
+                <a target="_blank" rel="noopener" href="https://www.gov.br/mme/pt-br">Ste Governamental</a>
+                <?php if($username): ?>
+                    <?= $this->html->link(_('Logout'), ['controller' => 'Users', 'action' => 'logout']) ?>
+                <?php endif; ?>
+            </div>
+        </nav>
+    </div>
     <main class="main">
         <div class="container">
             <?= $this->Flash->render() ?>
@@ -55,6 +56,7 @@ $cakeDescription = 'Sinegencia';
         </div>
     </main>
     <footer>
+ 
     </footer>
 </body>
 </html>

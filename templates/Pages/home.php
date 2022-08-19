@@ -19,6 +19,7 @@ use Cake\Core\Plugin;
 use Cake\Datasource\ConnectionManager;
 use Cake\Error\Debugger;
 use Cake\Http\Exception\NotFoundException;
+use Cake\View\Widget\ButtonWidget;
 
 $this->disableAutoLayout();
 
@@ -31,7 +32,7 @@ $checkConnection = function (string $name) {
     } catch (Exception $connectionError) {
         $error = $connectionError->getMessage();
         if (method_exists($connectionError, 'getAttributes')) {
-            $attributes = $connectionError->getAttributes();
+            $attributes = $connectionError->getTraceAsString();
             if (isset($attributes['message'])) {
                 $error .= '<br />' . $attributes['message'];
             }
@@ -41,13 +42,7 @@ $checkConnection = function (string $name) {
     return compact('connected', 'error');
 };
 
-if (!Configure::read('debug')) :
-    throw new NotFoundException(
-        'Please replace templates/Pages/home.php with your own version or re-enable debug mode.'
-    );
-endif;
-
-$cakeDescription = 'Home';
+$cakeDescription = 'Sinergencia';
 ?>
 <!DOCTYPE html>
 <html>
@@ -69,46 +64,48 @@ $cakeDescription = 'Home';
     <?= $this->fetch('script') ?>
 </head>
 <body>
-    <header>
-        <div class="container text-center">
-            <a href="https://cakephp.org/" target="_blank" rel="noopener">
-                <img alt="CakePHP" src="https://cakephp.org/v2/img/logos/CakePHP_Logo.svg" width="350" />
-            </a>
-            <h1>
-                Welcome to CakePHP <?= Configure::version() ?> Strawberry (🍓)
-            </h1>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="<?= $this->Url->build('/') ?>">Home</a>
+            <button
+            class="navbar-toggler"
+            type="button"
+            data-mdb-toggle="collapse"
+            data-mdb-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+            >
+            <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-link" href=<?= $this->html->link(_('Ocorrencia'), ['controller' => 'Ocorrencias', 'action' => 'index'])?></a>
+                <a class="nav-link" href=<?= $this->html->link(_('Adminstrador'), ['controller' => 'Users', 'action' => 'index']) ?></a>
+                <a class="nav-link" href=<?= $this->html->link(_('Feedback'), ['controller' => 'Admin', 'action' => 'Feedback']) ?></a>
+                <a class="nav-link" href=<?= $this->html->link(_('Classificações'), ['controller' => 'Classificacoes', 'action' => 'index']) ?></a>
+                <a class="nav-link" href=<?= $this->html->link(_('Usuarios'), ['controller' => 'Usuariocomums', 'action' => 'index']) ?></a>
+                <a class="nav-link" href=<?= $this->html->link(_('Endereços'), ['controller' => 'Enderecos', 'action' => 'index']) ?></a>
+                <a class="nav-link" href=<?= $this->html->link(_('Login'), ['controller' => 'admin', 'action' => 'users']) ?></a>
+                <a class="nav-link" href=<?= $this->html->link(_('Login'), ['controller' => 'Users', 'action' => 'login']) ?></a>
+            </div>
+            </div>
         </div>
-    </header>
+    </nav>
     <main class="main">
+    
         <div class="container">
             <div class="content">
                 <div class="row">
                     <div class="column">
                         <div class="message default text-center">
-                            <small>Please be aware that this page will not be shown if you turn off debug mode unless you replace templates/Pages/home.php with your own version.</small>
+                            <strong>Please be aware that this page will not be shown if you turn off debug mode unless you replace templates/Pages/home.php with your own version.</strong>
                         </div>
-                        <div id="url-rewriting-warning" style="padding: 1rem; background: #fcebea; color: #cc1f1a; border-color: #ef5753;">
-                            <ul>
-                                <li class="bullet problem">
-                                    URL rewriting is not properly configured on your server.<br />
-                                    1) <a target="_blank" rel="noopener" href="https://book.cakephp.org/4/en/installation.html#url-rewriting">Help me configure it</a><br />
-                                    2) <a target="_blank" rel="noopener" href="https://book.cakephp.org/4/en/development/configuration.html#general-configuration">I don't / can't use URL rewriting</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <?php Debugger::checkSecurityKeys(); ?>
                     </div>
                 </div>
                 <div class="row">
                     <div class="column">
                         <h4>Environment</h4>
-                        <ul>
-                        <li><?= $this->html->link(_('Ocorrencias'), ['controller' => 'Ocorrencias', 'action' => 'index']) ?></li>
-                        <li><?= $this->html->link(_('Administradores'), ['controller' => 'Users', 'action' => 'index']) ?></li>
-                        <li><?= $this->html->link(_('Feedback'), ['controller' => 'Admin', 'action' => 'Feedback']) ?></li>
-                        <li><?= $this->html->link(_('Classificações'), ['controller' => 'Classificacoes', 'action' => 'index']) ?></li>
-                        <li> <?= $this->html->link(_('Usuarios'), ['controller' => 'Usuariocomums', 'action' => 'index']) ?></li>
-                        <li><?= $this->html->link(_('Endereco'), ['controller' => 'Enderecos', 'action' => 'index']) ?></li>
                         <?php if (version_compare(PHP_VERSION, '7.2.0', '>=')) : ?>
                             <li class="bullet success">Your version of PHP is 7.2.0 or higher (detected <?= PHP_VERSION ?>).</li>
                         <?php else : ?>
@@ -236,5 +233,206 @@ $cakeDescription = 'Home';
             </div>
         </div>
     </main>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+    <footer id="dk-footer" class="dk-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-lg-4">
+                        <div class="dk-footer-box-info">
+                            <a href="index.html" class="footer-logo">
+                                <img src="webroot/img/footer.png" alt="footer_logo" class="img-fluid">
+                            </a>
+                            <p class="footer-info-text">
+                            I don’t want to protect environment, I want to create a world where the environment does not need protecting.
+                            </p>
+                            <div class="footer-social-link">
+                                <h3>Follow us</h3>
+                                <ul>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-facebook"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-twitter"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-google-plus"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-linkedin"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-instagram"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- End Social link -->
+                        </div>
+                        <!-- End Footer info -->
+                        <div class="footer-awarad">
+                            <img src="images/icon/best.png" alt="">
+                            <p>Design company with responsibility and commitment 2022</p>
+                        </div>
+                    </div>
+                    <!-- End Col -->
+                    <div class="col-md-12 col-lg-8">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="contact-us">
+                                    <div class="contact-icon">
+                                        <i class="fa fa-map-o" aria-hidden="true"></i>
+                                    </div>
+                                    <!-- End contact Icon -->
+                                    <div class="contact-info">
+                                        <h3>Jaipur India</h3>
+                                        <p>5353 Road Avenue</p>
+                                    </div>
+                                    <!-- End Contact Info -->
+                                </div>
+                                <!-- End Contact Us -->
+                            </div>
+                            <!-- End Col -->
+                            <div class="col-md-6">
+                                <div class="contact-us contact-us-last">
+                                    <div class="contact-icon">
+                                        <i class="fa fa-volume-control-phone" aria-hidden="true"></i>
+                                    </div>
+                                    <!-- End contact Icon -->
+                                    <div class="contact-info">
+                                        <h3>95 711 9 5353</h3>
+                                        <p>Give us a call</p>
+                                    </div>
+                                    <!-- End Contact Info -->
+                                </div>
+                                <!-- End Contact Us -->
+                            </div>
+                            <!-- End Col -->
+                        </div>
+                        <!-- End Contact Row -->
+                        <div class="row">
+                            <div class="col-md-12 col-lg-6">
+                                <div class="footer-widget footer-left-widget">
+                                    <div class="section-heading">
+                                        <h3>Useful Links</h3>
+                                        <span class="animate-border border-black"></span>
+                                    </div>
+                                    <ul>
+                                        <li>
+                                            <a href="#">About us</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Services</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Projects</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Our Team</a>
+                                        </li>
+                                    </ul>
+                                    <ul>
+                                        <li>
+                                            <a href="#">Contact us</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Blog</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Testimonials</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Faq</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!-- End Footer Widget -->
+                            </div>
+                            <!-- End col -->
+                            <div class="col-md-12 col-lg-6">
+                                <div class="footer-widget">
+                                    <div class="section-heading">
+                                        <h3>Subscribe</h3>
+                                        <span class="animate-border border-black"></span>
+                                    </div>
+                                    <p><!-- Don’t miss to subscribe to our new feeds, kindly fill the form below. -->
+                                    Reference site about Lorem Ipsum, giving information on its origins, as well.</p>
+                                    <form action="#">
+                                        <div class="form-row">
+                                            <div class="col dk-footer-form">
+                                                <input type="email" class="form-control" placeholder="Email Address">
+                                                <button type="submit">
+                                                    <i class="fa fa-send"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <!-- End form -->
+                                </div>
+                                <!-- End footer widget -->
+                            </div>
+                            <!-- End Col -->
+                        </div>
+                        <!-- End Row -->
+                    </div>
+                    <!-- End Col -->
+                </div>
+                <!-- End Widget Row -->
+            </div>
+            <!-- End Contact Container -->
+
+
+            <div class="copyright">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <span>Copyright © 2022, All Right Reserved Seobin</span>
+                        </div>
+                        <!-- End Col -->
+                        <div class="col-md-6">
+                            <div class="copyright-menu">
+                                <ul>
+                                    <li>
+                                        <a href="#">Home</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Terms</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Privacy Policy</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Contact</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- End col -->
+                    </div>
+                    <!-- End Row -->
+                </div>
+                <!-- End Copyright Container -->
+            </div>
+            <!-- End Copyright -->
+            <!-- Back to top -->
+            <div id="back-to-top" class="back-to-top">
+                <button class="btn btn-dark" title="Back to Top" style="display: block;">
+                    <i class="fa fa-angle-up"></i>
+                </button>
+            </div>
+    </footer>
 </body>
 </html>

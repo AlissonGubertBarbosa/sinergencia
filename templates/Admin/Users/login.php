@@ -6,12 +6,7 @@
  */
 ?>
 <div class="row">
-    <aside class="column">
-        <div class="side-nav">
-            <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Html->link(__('New User'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
-        </div>
-    </aside>
+    
     <div class="column-responsive column-80">
         <div class="users form content">
             <?= $this->Form->create() ?>
@@ -24,6 +19,12 @@
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>
             <?= $this->Form->end() ?>
+            <aside class="column">
+                <div class="side-nav">
+                    <h4 class="heading"><?= __('Actions') ?></h4>
+                    <?= $this->Html->link(__('Se cadastrar ao sistema'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
+                </div>
+            </aside>
         </div>
     </div>
 </div>
